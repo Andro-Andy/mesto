@@ -1,0 +1,11 @@
+.cards {
+  width: 100%;
+  display: grid;
+  gap: 17px;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+
