@@ -1,13 +1,7 @@
 .profile__info {
-  max-width: 360px;
-  margin: 0 auto 0 30px;
-  padding: 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  text-align: left;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
 }
 
 

@@ -42,7 +42,6 @@ let jobInput = document.querySelector ('.popup__form-input_field_bio');
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.               
     // Получите значение полей jobInput и nameInput из свойства value
-   
     // Выберите элементы, куда должны быть вставлены значения полей
  let name = document.querySelector('.profile__name').textContent = nameInput.value;
  let bio = document.querySelector('.profile__bio').textContent = jobInput.value ;

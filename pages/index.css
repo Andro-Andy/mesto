@@ -1,23 +1,23 @@
-
-@import url(../styles/normalize.css);
-@import url(../fonts/fonts.css);
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/);
 @import url(../blocks/page/page.css);
 
 /*Header*/
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
-
 /*Profile*/
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__content/profile__content.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+
 @import url(../blocks/profile/__photo-area/profile__photo-area.css);
 @import url(../blocks/profile/__photo/profile__photo.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__bio/profile__bio.css);
-@import url(../blocks/profile/__info/profile__info.css);
-@import url(../blocks/profile/__add-button/profile__add-button.css);
-@import url(../blocks/profile/__edtn-button/profile__edtn-button.css);
-@import url(../blocks/profile/__edtn-button/_photo/profile__edtn-button_photo.css);
+
+
 
 /*Photo Grid*/
 @import url(../blocks/photo-grid/photo-grid.css);
