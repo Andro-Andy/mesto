@@ -1,20 +1,19 @@
 .profile__bio {
   margin: 0;
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: normal;
   font-size: 18px;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: normal;
 }
 
 
-@media all and (max-width: 767px) {
+@media all and (max-width: 1000px) {
   .profile__bio {
     font-size: 14px;
+    margin: 0 auto;
     line-height: 17px;
     text-align: center;
-    margin: 0 auto;
   }
 }
