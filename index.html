@@ -9,131 +9,114 @@
 </head>
 
 <body class="page">
+  <!-- header -->
   <header class="header">
     <img class="header__logo" src="./images/logo/logo.svg" alt="logo">
   </header>
+  <!-- /header -->
+
   <main>
+    <!-- Profile -->
     <section class="profile">
       <div class="profile__content">
         <img src="./images/profile/avatar.jpg" alt="Аватар" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button" title="Редактировать профиль"></button>
           <p class="profile__bio">Иследователь океана</p>
         </div>
       </div>
-      <button type="button" class="profile__add-button">
+      <button type="button" class="profile__add-button" title="Добавить карточку">
         <img src="./images/button/add-button.svg" alt="добавить">
       </button>
     </section>
+    <!-- /Profile -->
+
+    <!-- Grid__elements -->
+    <section class="grid__elements">
+      <ul class="elements">
+        <li class="element">
+          <img src="./images/photos/kirill-pershin-1088404-unsplash.png" class="element__image">
+          <div class="element__info">
+            <h2 class="element__title">Карачаевск</h2>
+            <button class="element__like" title="Нравится"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/photos/kirill-pershin-1404681-unsplash.png" class="element__image">
+          <div class="element__info">
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <div class="element__like-group">
+              <button class="element__like  element__btn_clicked" title="Нравится"></button>
+            </div>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/photos/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="element__image">
+          <div class="element__info">
+            <h2 class="element__title">Домбай</h2>
+            <div class="element__like-group">
+              <button class="element__like   element__btn_clicked" title="Нравится"></button>
+            </div>
+          </div>
+        </li>
+        <li class="element"><img src="./images/photos/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус"
+            class="element__image">
+          <div class="element__info">
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <div class="element__like-group"><button class="element__like   element__btn_clicked"
+                title="Нравится"></button>
+            </div>
+          </div>
+
+        </li>
+        <li class="element">
+          <img src="./images/photos/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="element__image">
+          <div class="element__info">
+            <h2 class="element__title">Домбай</h2>
+            <div class="element__like-group">
+              <button class="element__like" title="Нравится"></button>
+            </div>
+          </div>
+
+        </li>
+        <li class="element">
+          <img src="./images/photos/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкесия"
+            class="element__image">
+          <div class="element__info">
+            <h2 class="element__title">Карачаево-Черкесия</h2>
+            <div class="element__like-group">
+              <button class="element__like " title="Нравится"></button>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </section>
+    <!-- /Grid__elements -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer__author">&copy; 2022 Andro</p>
+      <p class="footer__author">Mesto</p>
+    </footer>
+    <!-- /Footer -->
   </main>
+
+  <!-- Popup -->
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close-btn" title="Закрыть"></button>
+      <h3 class="popup__info">Редактировать профиль</h3>
+      <form class="popup__fields">
+        <input type="text" placeholder="Имя" class="popup__form-input popup__form-input_name">
+        <input type="text" placeholder="О Себе" class="popup__form-input popup__form-input_bio">
+        <button type="submit" title="сохранить" class="popup__submit-btn" value="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <!-- /Popup -->
   <script src="./pages/index.js"></script>
 </body>
 
 </html>
-
-
-<!-- <main class="content">
-  <section class="profile">
-    <div class="profile__photo-area">
-      <img src="./images/profile/avatar.jpg" alt="Фото профиля" class="profile__photo">
-    </div>
-
-    <div class="profile__info">
-      <h1 class="profile__name">Жак-Ив Кусто</h1>
-      <p class="profile__bio">Иследователь океана</p>
-    </div>
-    <button type="button" aria-label="кнопка-добавить" class="profile__add-button">
-    </button>
-
-  </section>
-
-  <section class="photo-grid">
-    <ul class="cards">
-      <li class="cards__item">
-        <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn" style="display:none">
-        </button>
-        <img src="./images/photos/kirill-pershin-1088404-unsplash.png" alt="Карачаевск" class="cards__image">
-        <div class="cards__elements">
-          <h2 class="cards__text">Карачаевск</h2>
-          <div><button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          </div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn" style="display:none">
-        </button>
-        <img src="./images/photos/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" class="cards__image">
-        <div class="cards__elements">
-          <h2 class="cards__text">Гора Эльбрус</h2>
-          <div><button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-            <p class="cards__like-number"></p>
-          </div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn" style="display:none">
-        </button>
-        <img src="./images/photos/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="cards__image">
-        <div class="cards__elements">
-          <h2 class="cards__text">Домбай</h2>
-          <div><button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-            <p class="cards__like-number"></p>
-          </div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn" style="display:none">
-        </button>
-        <img src="./images/photos/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус" class="cards__image">
-        <div class="cards__elements">
-          <h2 class="cards__text">Гора Эльбрус</h2>
-          <div><button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-            <p class="cards__like-number"></p>
-          </div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn" style="display:none">
-        </button>
-        <img src="./images/photos/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="cards__image">
-        <div class="cards__elements">
-          <h2 class="cards__text">Домбай</h2>
-          <div><button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-            <p class="cards__like-number"></p>
-          </div>
-        </div>
-      </li>
-      <li class="cards__item">
-        <button type="button" aria-label="кнопка-удалить" class="cards__delete-btn" style="display:none">
-        </button>
-        <img src="./images/photos/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Ч..." class="cards__image">
-        <div class="cards__elements">
-          <h2 class="cards__text">Карачаево-Ч...</h2>
-          <button type="button" aria-label="кнопка-лайк" class="cards__like"></button>
-          <p class="cards__like-number"></p>
-
-        </div>
-      </li>
-    </ul>
-  </section>
-</main>
-
-<footer class="footer">
-  <p class="footer__author">&copy; 2022 Andro</p>
-</footer>
-
-<div class="popup popup_type_profile">
-  <div class="popup__overlay"></div>
-  <div class="popup__container ">
-    <button type="button" class="popup__close-btn popup__close-btn_area_profile" aria-label="кнопка-закрыть"></button>
-    <h3 class="popup__name">Редактировать профиль</h3>
-    <form class="popup__form" name="profile-form" novalidate>
-      <input type="text" placeholder="Имя" name="name" id="name" class="popup__form-input popup__form-input_field_name"
-        required minlength="2" maxlength="40">
-      <input type="text" placeholder="О Себе" name="about" id="about"
-        class="popup__form-input popup__form-input_field_bio" required minlength="2" maxlength="200">
-      <button type="submit" aria-label="кнопка-сохранить" class="popup__submit-btn" value="Сохранить">Сохранить</button>
-    </form>
-  </div>
-</div> -->

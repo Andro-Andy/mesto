@@ -17,26 +17,23 @@
 //     }
 // })
 
-let ButtonEdit = document.querySelector('.profile__edtn-button');
+let ButtonEdit = document.querySelector('.profile__edit-button');
 let editlock = document.querySelector('.popup');
 let editslock = document.querySelector('.popup__close-btn');
-
 ButtonEdit.onclick = function() {
-editlock.classList.add('popup_opened'); 
+editlock.classList.add('popup__opened'); 
 }
 editslock.onclick = function() {
-editlock.classList.remove('popup_opened');
+editlock.classList.remove('popup__opened');
 }
-
-
 
 // Редактирование профиля
 
 // Находим форму в DOM
-let formElement = document.querySelector ('.popup__form');
+let formElement = document.querySelector ('.popup__fields');
 // Находим поля формы в DOM
-let nameInput = document.querySelector ('.popup__form-input_field_name');
-let jobInput = document.querySelector ('.popup__form-input_field_bio');
+let nameInput = document.querySelector ('.popup__form-input_name');
+let jobInput = document.querySelector ('.popup__form-input_bio');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
