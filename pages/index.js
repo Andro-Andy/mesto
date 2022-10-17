@@ -1,35 +1,22 @@
-// Открытие редактирование профиля
-// let popupBtn = document.querySelector('.profile__edtn-button');
-// let popupCloseBtn = document.querySelector('.popup__close-btn');
-// let popupEle = document.querySelector('.popup');
-
-// function openPopup(){
-//     popupEle.classList.add('popup_opened');
-// }
-// function closePopup(){
-//     popupEle.classList.remove('popup_opened');
-// }
-// popupBtn.addEventListener('click', openPopup);
-// popupCloseBtn.addEventListener('click', closePopup);
-// popupEle.addEventListener('click', function(event){
-//     if (event.target === event.currentTarget){
-//         closePopup();
-//     }
-// })
-
-let ButtonEdit = document.querySelector('.profile__edit-button');
-let editlock = document.querySelector('.popup');
-let editslock = document.querySelector('.popup__close-btn');
+//  Открытие и закрытие блока popup
+ let ButtonEdit = document.querySelector('.profile__edit-button');
+ let popup = document.querySelector('.popup');
+ let editlock = document.querySelector('.popup__close-btn');
 ButtonEdit.onclick = function() {
-editlock.classList.add('popup__opened'); 
+popup.classList.toggle('popup__opened'); 
 }
-editslock.onclick = function() {
-editlock.classList.remove('popup__opened');
+editlock.onclick = function() { 
+popup.classList.toggle('popup__opened');
+window.addEventListener('click', e => { // при клике в любом месте окна браузера
+    const target = e.target // находим элемент, на котором был клик
+    if (!target.closest('.popup__container') && !target.closest('.profile__edit-button')) { // если этот элемент или его родительские элементы не окно навигации и не кнопка
+      popup.classList.remove('popup__opened') // то закрываем окно навигации, удаляя активный класс
+    }
+  })
+
 }
 
 // Редактирование профиля
-
-// Находим форму в DOM
 let formElement = document.querySelector ('.popup__fields');
 // Находим поля формы в DOM
 let nameInput = document.querySelector ('.popup__form-input_name');
@@ -50,3 +37,15 @@ function formSubmitHandler (evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
+
+
+// // Открыть добавление 
+// let ButtonProfile = document.querySelector('.profile__add-button');
+// let emptylock = document.querySelector('.popup__empty');
+// let emptylocks = document.querySelector('.popup__close-btn');
+// ButtonProfile.onclick = function() {
+// emptylock.classList.add('popup__opened'); 
+// }
+// emptylocks.onclick = function() {
+// emptylock.classList.remove('popup__opened');
+// }
