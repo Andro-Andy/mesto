@@ -1,7 +1,7 @@
 //  Открытие и закрытие блока popup
  let ButtonEdit = document.querySelector('.profile__edit-button');
  let popup = document.querySelector('.popup');
- let editlock = document.querySelector('.popup-close__btn');
+ let editlock = document.querySelector('.popup__close_btn');
 ButtonEdit.onclick = function() {
 popup.classList.toggle('popup__opened'); 
 }
@@ -43,7 +43,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 // // Открыть добавление 
 // let ButtonProfile = document.querySelector('.profile__add-button');
 // let emptylock = document.querySelector('.popup__empty');
-// let emptylocks = document.querySelector('.popup-close__btn');
+// let emptylocks = document.querySelector('.popup__close_btn');
 // ButtonProfile.onclick = function() {
 // emptylock.classList.add('popup__opened'); 
 // }
