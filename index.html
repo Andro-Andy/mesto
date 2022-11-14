@@ -32,8 +32,8 @@
     </section>
     <!-- /Profile -->
 
-    <!-- Grid__elements -->
-    <section class="grid__elements">
+    <!-- Grid__element -->
+    <section class="grid__element">
       <ul class="elements">
         <li class="element">
           <img src="./images/photos/kirill-pershin-1088404-unsplash.png" class="element__image" alt="Карачаевск">
@@ -56,7 +56,7 @@
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
             <div class="element__like-group">
-              <button class="element__like   element__btn_clicked" title="Нравится"></button>
+              <button class="element__like   " title="Нравится"></button>
             </div>
           </div>
         </li>
@@ -64,8 +64,7 @@
             class="element__image">
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <div class="element__like-group"><button class="element__like   element__btn_clicked"
-                title="Нравится"></button>
+            <div class="element__like-group"><button class="element__like   " title="Нравится"></button>
             </div>
           </div>
 
@@ -93,7 +92,7 @@
         </li>
       </ul>
     </section>
-    <!-- /Grid__elements -->
+    <!-- /Grid__element -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -116,7 +115,19 @@
     </div>
   </div>
   <!-- /Popup -->
-
+  <!-- Popup__Empty -->
+  <div class="popup__empty">
+    <div class="popup__container">
+      <button class="popup__close-btn" title="Закрыть"></button>
+      <h3 class="popup__info">Новое место</h3>
+      <form class="popup__fields">
+        <input type="text" placeholder="Название" class="popup__form-input popup__form-input_name">
+        <input type="text" placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_bio">
+        <button type="submit" title="сохранить" class="popup__submit-btn" value="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <!-- /Popup__Empty -->
   <script src="./pages/index.js"></script>
 </body>
 

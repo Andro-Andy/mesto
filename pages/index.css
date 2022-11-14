@@ -17,7 +17,7 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
 /* grid__elements */
-@import url(../blocks/grid__elements/grid__elements.css);
+@import url(../blocks/grid__element/grid__element.css);
 
 /*Elements*/
 @import url(../blocks/elements/elements.css);
