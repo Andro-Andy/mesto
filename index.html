@@ -47,7 +47,7 @@
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
             <div class="element__like-group">
-              <button class="element__like  element__btn_clicked" title="Нравится"></button>
+              <button class="element__like" title="Нравится"></button>
             </div>
           </div>
         </li>
@@ -104,30 +104,18 @@
 
   <!-- Popup -->
   <div class="popup">
-    <div class="popup__container">
-      <button class="popup__close-btn" title="Закрыть"></button>
-      <h3 class="popup__info">Редактировать профиль</h3>
-      <form class="popup__fields">
-        <input type="text" placeholder="Имя" class="popup__form-input popup__form-input_name">
-        <input type="text" placeholder="О Себе" class="popup__form-input popup__form-input_bio">
-        <button type="submit" title="сохранить" class="popup__submit-btn" value="Сохранить">Сохранить</button>
+    <div class="popup-container">
+      <button class="popup-close__btn" title="Закрыть"></button>
+      <h3 class="popup-info">Редактировать профиль</h3>
+      <form class="popup-fields">
+        <input type="text" placeholder="Имя" class="popup-form__input popup-form__input_name">
+        <input type="text" placeholder="О Себе" class="popup-form__input popup-form__input_bio">
+        <button type="submit" title="сохранить" class="popup-submit__btn" value="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
   <!-- /Popup -->
-  <!-- Popup__Empty -->
-  <div class="popup__empty">
-    <div class="popup__container">
-      <button class="popup__close-btn" title="Закрыть"></button>
-      <h3 class="popup__info">Новое место</h3>
-      <form class="popup__fields">
-        <input type="text" placeholder="Название" class="popup__form-input popup__form-input_name">
-        <input type="text" placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_bio">
-        <button type="submit" title="сохранить" class="popup__submit-btn" value="Сохранить">Сохранить</button>
-      </form>
-    </div>
-  </div>
-  <!-- /Popup__Empty -->
+
   <script src="./pages/index.js"></script>
 </body>
 

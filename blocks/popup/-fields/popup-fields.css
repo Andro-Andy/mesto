@@ -1,10 +1,10 @@
-.popup__fields {
+.popup-fields {
   margin-top: 54px;
   max-width: 358px;
 }
 
 @media all and (max-width: 768px) {
-  .popup__fields {
+  .popup-fields {
     max-width: 238px;
     margin-top: 75px;
   }
