@@ -1,4 +1,4 @@
-.popup-info {
+.popup__container-info {
   max-width: 330px;
   line-height: 29px;
   padding: 0;
@@ -9,7 +9,7 @@
 }
 
 @media all and (max-width: 768px) {
-  .popup-info {
+  .popup__container-info {
     font-size: 18px;
     line-height: 22px;
     max-width: 238px;

@@ -1,7 +1,7 @@
 //  Открытие и закрытие блока popup
  let ButtonEdit = document.querySelector('.profile__edit-button');
  let popup = document.querySelector('.popup');
- let editlock = document.querySelector('.popup__close_btn');
+ let editlock = document.querySelector('.popup__container-close');
 ButtonEdit.onclick = function() {
 popup.classList.toggle('popup__opened'); 
 }
@@ -9,7 +9,7 @@ editlock.onclick = function() {
 popup.classList.toggle('popup__opened');
 window.addEventListener('click', e => { // при клике в любом месте окна браузера
     const target = e.target // находим элемент, на котором был клик
-    if (!target.closest('.popup-container') && !target.closest('.profile__edit-button')) { // если этот элемент или его родительские элементы не окно навигации и не кнопка
+    if (!target.closest('.popup__container') && !target.closest('.profile__edit-button')) { // если этот элемент или его родительские элементы не окно навигации и не кнопка
       popup.classList.remove('popup__opened') // то закрываем окно навигации, удаляя активный класс
     }
   })
@@ -17,10 +17,10 @@ window.addEventListener('click', e => { // при клике в любом ме�
 }
 
 // Редактирование профиля
-let formElement = document.querySelector ('.popup-fields');
+let formElement = document.querySelector ('.popup__form');
 // Находим поля формы в DOM
-let nameInput = document.querySelector ('.popup-form__input_name');
-let jobInput = document.querySelector ('.popup-form__input_bio');
+let nameInput = document.querySelector ('.popup__form-input_name');
+let jobInput = document.querySelector ('.popup__form-input_bio');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
