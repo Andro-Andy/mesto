@@ -8,13 +8,17 @@ popup.classList.toggle('popup__opened');
 editlock.onclick = function() { 
 popup.classList.toggle('popup__opened');
 window.addEventListener('click', e => {   
-  // Перенос при закрытии popup
-
+ 
 // при клике в любом месте окна браузера
    const target = e.target // находим элемент, на котором был клик
    if (!target.closest('.popup__container') && !target.closest('.profile__edit-button')) { // если этот элемент или его родительские элементы не окно навигации и не кнопка
      popup.classList.remove('popup__opened') // то закрываем окно навигации, удаляя активный класс , после будет добавлена фунуция сохранения при закрытии без кнопки 
-   }
+    // Перенос при закрытии popup
+let proName = document.querySelector('.profile__name').textContent;
+document.querySelector('.popup__form-input_name').value = proName;
+let proBio = document.querySelector('.profile__bio').textContent;
+document.querySelector('.popup__form-input_bio').value = proBio;
+this}
  })
 
 }
