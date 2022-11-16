@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
   <link rel="stylesheet" href="pages/index.css">
-  </head>
+</head>
 
 <body class="page">
   <!-- header -->
@@ -39,56 +39,47 @@
           <img src="./images/photos/kirill-pershin-1088404-unsplash.png" class="element__image" alt="Карачаевск">
           <div class="element__info">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like" title="Нравится"></button>
+            <button type="button" class="element__like" title="Нравится"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/photos/kirill-pershin-1404681-unsplash.png" class="element__image" alt="Гора Эльбрус">
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <div class="element__like-group">
-              <button class="element__like" title="Нравится"></button>
-            </div>
+
+            <button type="button" class="element__like" title="Нравится"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/photos/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="element__image">
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <div class="element__like-group">
-              <button class="element__like   " title="Нравится"></button>
-            </div>
+
+            <button type="button" class="element__like   " title="Нравится"></button>
           </div>
         </li>
         <li class="element"><img src="./images/photos/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус"
             class="element__image">
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <div class="element__like-group"><button class="element__like   " title="Нравится"></button>
-            </div>
+            <button type="button" class="element__like   " title="Нравится"></button>
           </div>
-
         </li>
         <li class="element">
           <img src="./images/photos/kirill-pershin-1556355-unsplash.png" alt="Домбай" class="element__image">
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <div class="element__like-group">
-              <button class="element__like" title="Нравится"></button>
-            </div>
-          </div>
 
+            <button type="button" class="element__like" title="Нравится"></button>
+          </div>
         </li>
         <li class="element">
           <img src="./images/photos/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкесия"
             class="element__image">
           <div class="element__info">
             <h2 class="element__title">Карачаево-Черкесия</h2>
-            <div class="element__like-group">
-              <button class="element__like " title="Нравится"></button>
-            </div>
+            <button type="button" class="element__like " title="Нравится"></button>
           </div>
-
         </li>
       </ul>
     </section>
@@ -96,8 +87,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p class="footer__author">&copy; 2022 Andro</p>
-      <p class="footer__author">Mesto</p>
+      <p class="footer__author"> Mesto &copy; 2022 Andro</p>
     </footer>
     <!-- /Footer -->
   </main>
@@ -105,7 +95,7 @@
   <!-- Popup -->
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__container-close" title="Закрыть"></button>
+      <button type="close" class="popup__container-close" title="Закрыть"></button>
       <h3 class="popup__container-info">Редактировать профиль</h3>
       <form class="popup__form">
         <input type="text" placeholder="Имя" class="popup__form-input popup__form-input_name">
@@ -116,7 +106,19 @@
   </div>
   <!-- /Popup -->
 
-  <script src="./pages/index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
-</html>
+</html><!-- popup-empty -->
+<!-- <div class="popup-empty">
+    <div class="popup-container">
+      <button class="popup-close__btn" title="Закрыть"></button>
+      <h3 class="popup-info">Новое место</h3>
+      <form class="popup-fields">
+        <input type="text" placeholder="Название" class="popup-form__input popup-form__input_name">
+        <input type="text" placeholder="Ссылка на картинку" class="popup-form__input popup-form__input_bio">
+        <button type="submit" title="сохранить" class="popup-submit__btn" value="Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div> -->
+<!-- /popup-empty -->

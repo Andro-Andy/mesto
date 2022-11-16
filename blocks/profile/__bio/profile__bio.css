@@ -6,6 +6,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: normal;
+  max-width: 350px;
 }
 
 

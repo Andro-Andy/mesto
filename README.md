@@ -1,18 +1,16 @@
 # Проект: Место
 
-### Обзор
-* Figma
-* Картинки
-* Js
-**Figma**
+\*Проект по учебе JS. Ключевая задача - редактирование полей. Так-же работа над адаптивной версткой.
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-* 
-**Картинки**
+### Технологии
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+- HTML5
+- CCS3
+- Figma
+- Файловая структура по БЭМ
+- Java Script
+- Grid layot
+  **Макет Figma**
+- [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-Удачи!
-
-[Посмотреть](https://ww228ww.github.io/mesto/)
+\*Проект добавлен на Git pages [Посмотреть](https://ww228ww.github.io/mesto/)
