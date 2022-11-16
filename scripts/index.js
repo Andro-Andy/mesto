@@ -9,10 +9,6 @@ editlock.onclick = function() {
 popup.classList.toggle('popup__opened');
 window.addEventListener('click', e => {   
   // Перенос при закрытии popup
-let proName = document.querySelector('.profile__name').textContent;
-document.querySelector('.popup__form-input_name').value = proName;
-let proBio = document.querySelector('.profile__bio').textContent;
-document.querySelector('.popup__form-input_bio').value = proBio;
 
 // при клике в любом месте окна браузера
    const target = e.target // находим элемент, на котором был клик
