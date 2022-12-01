@@ -5,17 +5,17 @@ const poplockEdit = document.querySelector('.popup__container-close_edit');
 btnEdit.addEventListener('click', function () { popEdt.classList.add('popup_opened')});
 poplockEdit.addEventListener('click', function () { popEdt.classList.remove('popup_opened')});
 window.addEventListener('click', e => {   
-  // при клике в любом месте окна браузера
+// при клике в любом месте окна браузера
 const target = e.target // находим элемент, на котором был клик
-if (!target.closest('.popup__container') && !target.closest('.profile__edit-button') && !target.closest('.profile__add-button')) { // если этот элемент или его родительские элементы не окно навигации и не кнопка
-popEdt.classList.remove('popup_opened') || popEmt.classList.remove('popup_opened')    // то закрываем окно навигации, удаляя активный класс , после будет добавлена фунуция сохранения при закрытии без кнопки 
- // данные profile при закрытии popup
+if (!target.closest('.popup__container') && !target.closest('.profile__edit-button') && !target.closest('.profile__add-button')) {
+popEdt.classList.remove('popup_opened') || popEmt.classList.remove('popup_opened');    
+// данные profile при закрытии popup
 let proName = document.querySelector('.profile__name').textContent;
 document.querySelector('.popup__form-input_name').value = proName;
 let proBio = document.querySelector('.profile__bio').textContent;
 document.querySelector('.popup__form-input_bio').value = proBio;
   }
-   })
+}) 
 // Редактирование профиля
 let formElement = document.querySelector ('#form-edit');
 let nameInput = document.querySelector ('.popup__form-input_name');
