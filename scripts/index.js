@@ -60,7 +60,6 @@ document.addEventListener('click', ({ target: a }) => {
 // наполняем содержимым
 // userElement.querySelector('.user__avatar').src = 'tinyurl.com/v4pfzwy';
 // userElement.querySelector('.user__name').textContent = 'Дюк Корморант';
-
 // отображаем на странице
 // usersOnline.append(userElement); 
 const initialCards = [
@@ -92,23 +91,24 @@ const initialCards = [
 const container = document.querySelector('.page');
 const Container = container.querySelector('.elements');
 const addButton = container.querySelector('.popup__form-submit_add');
-function addCard() {
+function addCard(){
   const inpTemplate = document.querySelector('#element').content;
   const inpElement = inpTemplate.querySelector('.element').cloneNode(true);
-  const submitAdd = document.querySelector('#form-add');
  Container.append(inpElement);
- inpElement.querySelector('.popup-form__input_text');
+ inpElement.querySelector('.popup__form-input_title');
  inpElement.querySelector('.popup-form__input_link');
- submitAdd.addEventListener('submit', addCard);
+ inpElement.querySelector.textContent('.element-title');
+
 }
-addButton.addEventListener('click', function () {
-  const title = document.querySelector('.popup__form-input_name');
+addButton.addEventListener('click', function (evt)
+ {evt.preventDefault();
+  const title = document.querySelector('.element__title');
   const link = document.querySelector('.popup__form-input_bio');
   addCard(title.value, link.value);
-  const fons = document.querySelector('.element__image');
-  fons.style.backgroundImage = 'url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg)';
-  return false;
+
+  return undefined;
 });
+formElement.addEventListener('submit', addButton);
 // const element = querySelector('#element');
 // const createCard = (element) => {
 //   const cardItem = cardTemplate.querySelector(".element__card").cloneNode(true);

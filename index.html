@@ -35,13 +35,14 @@
     <!-- Grid-element -->
     <section class="grid-element">
       <div class="elements">
-        <li class="element">
+        <div class="element">
           <img src="./images/photos/kirill-pershin-1088404-unsplash.png" class="element__image" alt="Карачаевск">
           <div class="element__info">
+            <button type="button" class="element__delete"></button>
             <h2 class="element__title">Карачаевск</h2>
             <button type="button" class="element__like" title="Нравится"></button>
           </div>
-        </li>
+        </div>
       </div>
     </section>
     <!-- /Grid-element -->
@@ -54,20 +55,12 @@
   </main>
   <template id="element">
     <div class="element">
+      <button type="button" class="element__image"></button>
       <div class="element__info">
         <button type="button" class="element__delete"></button>
-        <button type="button" class="element__image"></button>
         <h2 class="element__title"></h2>
         <buttvon type="button" class="element__like "></buttvon>
       </div>
-    </div>
-  </template>
-
-  <template id="element">
-    <img src="./images/photos/kirill-pershin-1088404-unsplash.png" class="element__image" alt="Карачаевск">
-    <div class="element__info">
-      <h2 class="element__title">Карачаевск</h2>
-      <button type="button" class="element__like" title="Нравится"></button>
     </div>
   </template>
   <!-- Popup -->
@@ -84,12 +77,13 @@
     </div>
   </div>
   <!-- /Popup -->
+  <!-- Popup_add-->
   <div class="popup" id="popup-add">
     <div class="popup__container" id="form-add">
       <button class="popup__container-close popup__container-close_add" title="Закрыть"></button>
       <h3 class="popup__container-info">Новое место</h3>
       <form class="popup__form">
-        <input type="text" placeholder="Название" class="popup__form-input popup__form-input_title">
+        <input type="text" placeholder="Название" class="popup__form-input popup__form-input_title" value>
         <input type="text" placeholder="Ссылка на картинку" class="popup__form-input  popup__form-input_link">
         <button type="submit" title="сохранить" class="popup__form-submit popup__form-submit_add"
           value="Сохранить">Сохранить</button>
