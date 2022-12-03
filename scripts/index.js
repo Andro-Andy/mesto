@@ -11,9 +11,9 @@ if (!target.closest('.popup__container') && !target.closest('.profile__edit-butt
 popEdt.classList.remove('popup_opened') || popEmt.classList.remove('popup_opened');    
 // данные profile при закрытии popup
 let proName = document.querySelector('.profile__name').textContent;
-document.querySelector('.popup__form-input_name').value = proName;
+nameInput.value = proName;
 let proBio = document.querySelector('.profile__bio').textContent;
-document.querySelector('.popup__form-input_bio').value = proBio;
+jobInput.value = proBio;
   }
 }) 
 // Редактирование профиля
@@ -31,19 +31,19 @@ popEdt.classList.remove('popup_opened');
 formElement.addEventListener('submit', formSubmitHandler);
 // Перенос данных в Input
 let proName = document.querySelector('.profile__name').textContent;
-document.querySelector('.popup__form-input_name').value = proName;
+nameInput.value = proName;
 let proBio = document.querySelector('.profile__bio').textContent;
-document.querySelector('.popup__form-input_bio').value = proBio;
+jobInput.value = proBio;
 
 
-//  Открытие и закрытие блока popup New-card
+//Открытие и закрытие блока popup New-card
 const popEmt = document.querySelector('#popup-add');
 const btnAdd = document.querySelector('.profile__add-button');
 const popLockAdd = document.querySelector('.popup__container-close_add');
 btnAdd.addEventListener('click', function(){popEmt.classList.add('popup_opened')});
 popLockAdd.addEventListener('click', function () { popEmt.classList.remove('popup_opened')});
 
-//Кнопка лайка
+// Лайк карточек
 document.addEventListener('click', ({ target: a }) => {
   if (a.classList.contains('element__like')) {
     const index = [...document.querySelectorAll('.element__like')].indexOf(a);
@@ -51,17 +51,8 @@ document.addEventListener('click', ({ target: a }) => {
     like.classList.toggle('element__like-active');
     [like.classList.contains('element__like-active')];
   }
-});
+}); 
 
-//Карточки 
-// const tempCard = document.querySelector('#element').content;
-// const userElement = userTemplate.querySelector('.grid-element').cloneNode(true);
-
-// наполняем содержимым
-// userElement.querySelector('.user__avatar').src = 'tinyurl.com/v4pfzwy';
-// userElement.querySelector('.user__name').textContent = 'Дюк Корморант';
-// отображаем на странице
-// usersOnline.append(userElement); 
 const initialCards = [
   {
     name: 'Архыз',
@@ -86,72 +77,60 @@ const initialCards = [
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }]
+  }
+]  
+const initialsContainer = document.querySelector(".elements");
+const initialTemplate = document.querySelector("#element").content;
+const initialInfo = initialCards.map(function (item) {
+  return {
+    name: item.name,
+    link: item.link
+  };
+});
+function Cards() {
+  initialInfo.forEach(renderCard);
+}
+function renderCard({ name, link }) {
+  const initialElement = initialTemplate.querySelector(".element").cloneNode(true);
+  initialElement.querySelector(".element__title").textContent = name;
+  initialElement.querySelector(".element__image").src = link;
+  initialsContainer.prepend(initialElement);
+
+}
+Cards();
 
 const container = document.querySelector('.page');
 const Container = container.querySelector('.elements');
 const addButton = container.querySelector('.popup__form-submit_add');
-function addCard(){
+function addCard(titleValue , linkValue){
   const inpTemplate = document.querySelector('#element').content;
   const inpElement = inpTemplate.querySelector('.element').cloneNode(true);
- Container.append(inpElement);
- inpElement.querySelector('.popup__form-input_title');
- inpElement.querySelector('.popup-form__input_link');
- inpElement.querySelector.textContent('.element-title');
-
+ Container.prepend(inpElement);
+ inpElement.querySelector('.element__title').textContent = titleValue;
+ inpElement.querySelector('.element__image').src = linkValue;
+//  if(title || link  == " "){ 
+  // c 50% увереностью думаю что не должны пустые карточки создаваться. Если надо , можно подсказку как сделать?  
+//   return addCard; Пожалуйста ❤
+// };
 }
+
 addButton.addEventListener('click', function (evt)
  {evt.preventDefault();
-  const title = document.querySelector('.element__title');
-  const link = document.querySelector('.popup__form-input_bio');
+  const title = document.querySelector('.popup__form-input_title');
+  const link = document.querySelector('.popup__form-input_link');
   addCard(title.value, link.value);
+popEmt.classList.remove('popup_opened');
+title.value = '';
+link.value = '';
 
-  return undefined;
 });
 formElement.addEventListener('submit', addButton);
-// const element = querySelector('#element');
-// const createCard = (element) => {
-//   const cardItem = cardTemplate.querySelector(".element__card").cloneNode(true);
-//   cardItem.querySelector(".element__text").classList = element.name;
-//   cardItem.querySelector(".element__image").src = element.link;
-//   cardItem.querySelector(".element__image").alt = element.name;
-//   cardItem.querySelector(".element__button").addEventListener("click", function(evt) {
-//       evt.target.classList.toggle("element__button_active");
-//   });
-//   cardItem.querySelector(".element__delete").addEventListener("click", function(evt) {
-//       evt.target.closest(".element__card").remove();
-//   });
 
-//   return cardItem;
-// };
-// function addSong(artistValue, titleValue) { 
-//   const trackContainer = document.createElement('div');
-//   trackContainer.classList.add('song');
-
-//   const artistElement = document.createElement('h4');
-//   artistElement.classList.add('song__artist');
-//   artistElement.textContent = artistValue;
-
-//   const titleElement = document.createElement('h4');
-//   titleElement.classList.add('song__title');
-//   titleElement.textContent = titleValue;
-
-//   const likButtonElement = document.createElement('button');
-//   likButtonElement.classList.add('song__like');
-
-//   trackContainer.append(artistElement, titleElement, likButtonElement);
-//   songsContainer.append(trackContainer);
-// }
-// resetButton.addEventListener('click', function () {
-//   const songs = document.querySelectorAll('.song');
-  
-//   for (let i = 0; i < songs.length; i++){
-//     songs[i].remove()
-//   }
-// });
-// function addSong(artistValue, titleValue) {
-//   const songTemplate = document.querySelector('#song-template').content;
-//   const songElement = songTemplate.querySelector('.song').cloneNode(true);
-//   songElement.querySelector('.song__like').addEventListener('click', function (evt) {
-//   evt.target.classList.toggle('song__like_active');
-// });
+// Удаление карточки 
+document.addEventListener('click', ({ target: g }) => {
+  if (g.classList.contains('element__delete')) {
+    const i = [...document.querySelectorAll('.element__delete')].indexOf(g);
+    const dell = document.querySelectorAll('.element')[i];
+    dell.remove()
+  }
+}); 
