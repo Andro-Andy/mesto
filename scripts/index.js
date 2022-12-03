@@ -5,8 +5,8 @@ const poplockEdit = document.querySelector('.popup__container-close_edit');
 btnEdit.addEventListener('click', function () { popEdt.classList.add('popup_opened')});
 poplockEdit.addEventListener('click', function () { popEdt.classList.remove('popup_opened')});
 window.addEventListener('click', e => {   
-// при клике в любом месте окна браузера
-const target = e.target // находим элемент, на котором был клик
+// закрыть popup при клике в любом месте вне popup
+const target = e.target 
 if (!target.closest('.popup__container') && !target.closest('.profile__edit-button') && !target.closest('.profile__add-button')) {
 popEdt.classList.remove('popup_opened') || popEmt.classList.remove('popup_opened');    
 // данные profile при закрытии popup
@@ -95,7 +95,6 @@ function renderCard({ name, link }) {
   initialElement.querySelector(".element__title").textContent = name;
   initialElement.querySelector(".element__image").src = link;
   initialsContainer.prepend(initialElement);
-
 }
 Cards();
 
@@ -109,11 +108,10 @@ function addCard(titleValue , linkValue){
  inpElement.querySelector('.element__title').textContent = titleValue;
  inpElement.querySelector('.element__image').src = linkValue;
 //  if(title || link  == " "){ 
-  // c 50% увереностью думаю что не должны пустые карточки создаваться. Если надо , можно подсказку как сделать?  
+  // c 50% увереностью думаю что не должны пустые карточки создаваться. Если надо  , можно подсказку как сделать?  
 //   return addCard; Пожалуйста ❤
 // };
 }
-
 addButton.addEventListener('click', function (evt)
  {evt.preventDefault();
   const title = document.querySelector('.popup__form-input_title');
@@ -125,7 +123,6 @@ link.value = '';
 
 });
 formElement.addEventListener('submit', addButton);
-
 // Удаление карточки 
 document.addEventListener('click', ({ target: g }) => {
   if (g.classList.contains('element__delete')) {
@@ -134,3 +131,29 @@ document.addEventListener('click', ({ target: g }) => {
     dell.remove()
   }
 }); 
+const level = document.querySelector('#element__photo-popup');
+const closeImg = document.querySelector('.popup__container-close_photo');
+const pupImg = [...document.querySelectorAll('.element__image')];
+const popImg = document.querySelector('#popup-photo');
+
+container.onclick = function setLevelTimes(e) {
+  if (e.target.classList.contains('container')) {
+    pupImg.targetItem = pupImg[camelize(e.target.innerText)];
+    console.log(pupImg.targetItem);
+  }
+}
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+  }).replace(/\s+/g, '');
+}
+closeImg.addEventListener('click', function(){
+popImg.classList.remove('popup_opened')
+})
+// document.addEventListener('click', ({ target: x }) => {
+//   if (x.classList.contains('element__image')) {
+//     const y = [...document.querySelectorAll('.element__image')].indexOf(x);
+//     popImg.classList.add('popup_opened')
+//     console.log(y)
+//   }
+// }); 
