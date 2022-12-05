@@ -1,29 +1,23 @@
-//  Открытие и закрытие блока popup
-let ButtonEdit = document.querySelector('.profile__edit-button');
-let popup = document.querySelector('.popup');
-let editlock = document.querySelector('.popup__container-close');
-ButtonEdit.addEventListener('click', function () {
-  popup.classList.toggle('popup_opened')
-})
-editlock.addEventListener('click', function () {
-  popup.classList.toggle('popup_opened'  )
-})
-// ButtonEdit.onclick = function() {popup.classList.add('popup_opened')}; Этот спопсоб короче , но в брифе по другому 
-// editlock.onclick = function() {popup.classList.remove('popup_opened');}
+//  Открытие и закрытие блока popup add
+const popEdt = document.querySelector('#popup-edit');
+const popEmt = document.querySelector('#popup-add');
+const card = document.querySelector('#popup_photo');
+const btnEdit = document.querySelector('.profile__edit-button') ;
+const poplockEdit = document.querySelector('.popup__container-close_edit');
+btnEdit.addEventListener('click', function () { popEdt.classList.add('popup_opened')});
+poplockEdit.addEventListener('click', function () { popEdt.classList.remove('popup_opened')});
 window.addEventListener('click', e => {   
-// при клике в любом месте окна браузера
-   const target = e.target // находим элемент, на котором был клик
-   if (!target.closest('.popup__container') && !target.closest('.profile__edit-button')) { // если этот элемент или его родительские элементы не окно навигации и не кнопка
-     popup.classList.remove('popup_opened')  // то закрываем окно навигации, удаляя активный класс , после будет добавлена фунуция сохранения при закрытии без кнопки 
-    
-     // данные profile при закрытии popup
-    let proName = document.querySelector('.profile__name').textContent;
-    document.querySelector('.popup__form-input_name').value = proName;
-    let proBio = document.querySelector('.profile__bio').textContent;
-    document.querySelector('.popup__form-input_bio').value = proBio;
-}
- })
-
+// закрыть popup при клике в любом месте вне popup
+const target = e.target 
+if (!target.closest('.popup__container') && !target.closest('.profile__edit-button') && !target.closest('.profile__add-button') && !target.closest('.element__image')) {
+popEdt.classList.remove('popup_opened') || popEmt.classList.remove('popup_opened') || card.classList.remove('popup_opened');    
+// данные profile при закрытии popup
+let proName = document.querySelector('.profile__name').textContent;
+nameInput.value = proName;
+let proBio = document.querySelector('.profile__bio').textContent;
+jobInput.value = proBio;
+  }
+}) 
 // Редактирование профиля
 let formElement = document.querySelector ('.popup__form');
 // Находим поля формы в DOM
@@ -51,5 +45,87 @@ formElement.addEventListener('submit', formSubmitHandler);
 let proName = document.querySelector('.profile__name').textContent;
 document.querySelector('.popup__form-input_name').value = proName;
 let proBio = document.querySelector('.profile__bio').textContent;
-document.querySelector('.popup__form-input_bio').value = proBio;
-// Cо слезами на глазах доделал к 00:00 сидел с 15:00, пишу не чтобы поплакать , а чтобы возгордится  :) x2
+jobInput.value = proBio;
+const initialCards = [{
+	name: 'Архыз',
+	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+}, {
+	name: 'Челябинская область',
+	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+}, {
+	name: 'Иваново',
+	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+}, {
+	name: 'Камчатка',
+	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+}, {
+	name: 'Холмогорский район',
+	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+}, {
+	name: 'Байкал',
+	link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+}]
+
+const cards = document.querySelector('.elements');
+const popupImage = card.querySelector('.popup__image');
+const popuptext = card.querySelector('.popup__photo-text');
+const popupAdd = document.querySelector('#popup-add');
+const formAdd = popupAdd.querySelector('.popup__form');
+const addTitle = popupAdd.querySelector('.popup__form-input_title');
+const addlink = popupAdd.querySelector('.popup__form-input_link');
+const popLockAdd = document.querySelectorAll('.popup__container-close');
+const btnAdd = document.querySelector('.profile__add-button');
+// Открытие и закрытие блока popup-add
+btnAdd.addEventListener('click', function() {
+	openPopup(popupAdd);
+});
+function openPopup(popup) {
+	popup.classList.add('popup_opened');
+}
+function closePopup(popup) {
+	popup.classList.remove('popup_opened');
+}
+popLockAdd.forEach(closeBtn => {
+	const popup = closeBtn.closest('.popup');
+	closeBtn.addEventListener('click', () => closePopup(popup));
+});
+function imgElems(image, text) {
+	openPopup(card);
+  popupImage.setAttribute('alt', text);
+	popupImage.setAttribute('src', image);
+	popuptext.textContent = text;
+}
+function addNewCard(src, alt) {
+	const card = createCard(src, alt);
+	cards.prepend(card);
+}
+initialCards.forEach(function(Add) {
+	addNewCard(Add.link, Add.name);
+});
+function createCard(src, alt) {
+	const Template = document.querySelector('#element').content;
+	const Elem = Template.querySelector('.element').cloneNode(true);
+	const elemImg = Elem.querySelector('.element__image');
+  elemImg.setAttribute('alt', alt);
+	elemImg.setAttribute('src', src);
+	Elem.querySelector('.element__title').textContent = alt;
+	Elem.querySelector('.element__like').addEventListener('click', function(like) {
+		like.target.classList.toggle('element__like-active');
+	});
+	Elem.querySelector('.element__delete').addEventListener('click', function(del) {
+		del.target.closest('.element').remove();
+	});
+	elemImg.addEventListener('click', function(event) {
+		imgElems(src, alt);
+	});
+	return Elem;
+}
+function saveElems(evt) {
+	evt.preventDefault();
+  const linkImage = addlink.value;
+	const name = addTitle.value;
+	addNewCard(linkImage, name);
+	evt.target.reset();
+	closePopup(popupAdd);
+}
+formAdd.addEventListener('submit', saveElems);  
