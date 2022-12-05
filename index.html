@@ -75,19 +75,18 @@
       <button class="popup__container-close popup__container-close_add" title="Закрыть"></button>
       <h3 class="popup__container-info">Новое место</h3>
       <form class="popup__form">
-        <input type="text" placeholder="Название" class="popup__form-input popup__form-input_title">
-        <input type="text" placeholder="Ссылка на картинку" class="popup__form-input  popup__form-input_link">
+        <input type="text" placeholder="Название" class="popup__form-input popup__form-input_title" required>
+        <input type="text" placeholder="Ссылка на картинку" class="popup__form-input  popup__form-input_link" required>
         <button type="submit" title="сохранить" class="popup__form-submit popup__form-submit_add"
           value="Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
   <!-- /Popup_add -->
-  <!--/popup_img -->
-  <div class="popup popup_opened " id="popup-photo">
+  <!--popup_img -->
+  <div class="popup " id="popup_photo">
     <div class="popup__images">
-      <img alt="#" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-        class="popup__image">
+      <img alt="#" class="popup__image">
       <p class="popup__photo-text"></p>
       <button class="popup__container-close popup__container-close_photo" title="Закрыть"></button>
     </div>
