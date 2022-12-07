@@ -1,64 +1,33 @@
-const popEdt = document.querySelector(".popup_edit")
-const popupAdd = document.querySelector(".popup_add")
-const popImg = document.querySelector(".popup_photo")
-const popupImage = popImg.querySelector(".popup__image")
-const btnEdit = document.querySelector(".profile__edit-button")
-const poplockEdit = document.querySelector(".popup__container-close_edit")
-const closeImg = document.querySelector(".popup__container-close_photo")
-const cards = document.querySelector(".elements")
-const popuptext = popImg.querySelector(".popup__photo-text")
-const formAdd = popupAdd.querySelector(".popup__form")
-const addTitle = popupAdd.querySelector(".popup__form-input_title")
-const addlink = popupAdd.querySelector(".popup__form-input_link")
-const popLockAdd = document.querySelector(".popup__container-close_add")
-const btnAdd = document.querySelector(".profile__add-button")
+// Попапы
+const popEdit = document.querySelector(".popup_edit")
+const popAdd = document.querySelector(".popup_add")
+const popPhoto = document.querySelector(".popup_photo")
 
-btnEdit.addEventListener("click", function () {
-  popEdt.classList.add("popup_opened")
-})
-poplockEdit.addEventListener("click", function () {
-  popEdt.classList.remove("popup_opened")
-})
-const popAdd = document.querySelector(".form-edit")
-window.addEventListener("click", (e) => {
-  // закрыть popup при клике в любом месте вне popup
-  const target = e.target
-  if (
-    !target.closest(".popup__container") &&
-    !target.closest(".profile__edit-button") &&
-    !target.closest(".profile__add-button") &&
-    !target.closest(".popup__image")
-  ) {
-    popEdt.classList.remove("popup_opened") ||
-      popupAdd.classList.remove("popup_opened") ||
-      popupImage.classList.remove("popup_opened")
-    // данные profile при закрытии popup
-    let proName = document.querySelector(".profile__name").textContent
-    nameInput.value = proName
-    let proBio = document.querySelector(".profile__bio").textContent
-    jobInput.value = proBio
-  }
-})
+// Кнопки
+const popEditBtn = document.querySelector(".profile__edit-button")
+const popAddBtn = document.querySelector(".profile__add-button")
+const popCloseBtn = document.querySelectorAll(".popup__container-close")
 
-// Редактирование профиля
-let nameInput = document.querySelector(".popup__form-input_name")
-let jobInput = document.querySelector(".popup__form-input_bio")
-function formSubmitHandler(evt) {
-  evt.preventDefault()
-  let name = (document.querySelector(".profile__name").textContent =
-    nameInput.value)
-  let bio = (document.querySelector(".profile__bio").textContent =
-    jobInput.value)
-  name.textContent = nameInput
-  bio.textContent = jobInput
-  popEdt.classList.remove("popup_opened")
-}
-popAdd.addEventListener("submit", formSubmitHandler)
-// Перенос данных в Input
-let proName = document.querySelector(".profile__name").textContent
-nameInput.value = proName
-let proBio = document.querySelector(".profile__bio").textContent
-jobInput.value = proBio
+// Формы
+const elems = document.querySelector(".elements")
+const popform = document.querySelector(".popup__form")
+const formAdd = popAdd.querySelector(".popup__form")
+
+// Изменение значений 
+const inpName = document.querySelector(".popup__form-input_name")
+const inpBio = document.querySelector(".popup__form-input_bio")
+const proName = document.querySelector(".profile__name")
+const proBio = document.querySelector(".profile__bio")
+
+// Значения для карточки 
+const popAddTitle = popAdd.querySelector(".popup__form-input_title")
+const popAddLink = popAdd.querySelector(".popup__form-input_link")
+
+// Данные карточки
+const popImage = popPhoto.querySelector(".popup__image")
+const popImageText = popPhoto.querySelector(".popup__photo-text")
+
+// Массив 
 const initialCards = [
   {
     name: "Архыз",
@@ -86,73 +55,82 @@ const initialCards = [
   },
 ]
 
-btnAdd.addEventListener("click", function () {
-  openPopup(popupAdd)
+popEditBtn.addEventListener("click", function() {
+	openPopup(popEdit)
+	inpName.value = proName.textContent
+	inpBio.value = proBio.textContent
 })
-function openPopup(popup) {
-  popup.classList.add("popup_opened")
+
+function handleFormSubmit(evt) {
+	evt.preventDefault()
+	proName.textContent = inpName.value
+	proBio.textContent = inpBio.value
+	closePopup(popEdit)
 }
 
-popLockAdd.addEventListener("click", function () {
-  closePopup(popupAdd)
+function openPopup(e) {
+	e.classList.add("popup_opened")
+}
+popAddBtn.addEventListener("click", function() {
+	openPopup(popAdd)
 })
-function closePopup(closeAdd) {
-  closeAdd.classList.remove("popup_opened")
+
+function closePopup(popup) {
+	popup.classList.remove("popup_opened")
+}
+popCloseBtn.forEach((closeButton) => {
+	const popup = closeButton.closest(".popup")
+	closeButton.addEventListener("click", () => closePopup(popup))
+})
+popform.addEventListener("submit", handleFormSubmit)
+
+function openImagePop(image, text) {
+	openPopup(popPhoto)
+	popImage.setAttribute("src", image)
+	popImageText.textContent = text
+	popImage.setAttribute("alt", text)
 }
 
-closeImg.addEventListener("click", function () {
-  closeImage(popImg)
-})
-function closeImage(close) {
-  close.classList.remove("popup_opened")
-}
-// function closePopup(popup) {
-// popup.classList.remove('popup_opened');
-// }
+function createElement(src, alt) {
+	const template = document.querySelector("#element").content
+	const element = template.querySelector(".element").cloneNode(true)
+	const elemImage = element.querySelector(".element__image")
+	elemImage.setAttribute("src", src)
+	elemImage.setAttribute("alt", alt)
+	element.querySelector(".element__title").textContent = alt
+	element
+		.querySelector(".element__like")
+		.addEventListener("click", function(like) {
+			like.target.classList.toggle("element__like-active")
+		})
+	element
+		.querySelector(".element__delete")
+		.addEventListener("click", function(del) {
+			del.target.closest(".element").remove()
+		})
+	elemImage.addEventListener("click", function(event) {
+		openImagePop(src, alt)
+	})
 
-function imgElems(image, text) {
-  openPopup(popImg)
-  popuptext.textContent = text
-  popupImage.setAttribute("src", image)
-  popupImage.setAttribute("alt", text)
+	return element
 }
-function addNewCard(src, alt) {
-  const popImg = createCard(src, alt)
-  cards.prepend(popImg)
-}
-initialCards.forEach(function (Add) {
-  addNewCard(Add.link, Add.name)
-})
-function createCard(src, alt) {
-  const Template = document.querySelector("#element").content
-  const Elem = Template.querySelector(".element").cloneNode(true)
-  const elemImg = Elem.querySelector(".element__image")
-  elemImg.setAttribute("src", src)
-  elemImg.setAttribute("alt", alt)
-  Elem.querySelector(".element__title").textContent = alt
-  Elem.querySelector(".element__like")
-  Elem.addEventListener("click", function (like) {
-    like.target.classList.toggle("element__like-active")
-  })
 
-  Elem.querySelector(".element__delete").addEventListener(
-    "click",
-    function (del) {
-      del.target.closest(".element").remove()
-    }
-  )
-  elemImg.addEventListener("click", function (event) {
-    imgElems(src, alt)
-  })
-  return Elem
+function addElem(src, alt) {
+	const card = createElement(src, alt)
+	elems.prepend(card)
 }
-function saveCard(evt) {
-  evt.preventDefault()
-  const name = addTitle.value
-  const linkImage = addlink.value
-  addNewCard(name, linkImage)
-  evt.target.reset()
-  closePopup(popupAdd)
+
+initialCards.forEach(function(Add) {
+	addElem(Add.link, Add.name)
+})
+
+function saveElems(evt) {
+	evt.preventDefault()
+	const name = popAddTitle.value
+	const linkImage = popAddLink.value
+	addElem(linkImage, name)
+	evt.target.reset()
+	closePopup(popAdd)
 }
-formAdd.addEventListener("submit", saveCard)
-// Спасибо. Շնորհակալություն
+
+formAdd.addEventListener("submit", saveElems)
