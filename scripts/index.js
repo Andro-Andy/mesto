@@ -6,12 +6,12 @@ const popPhoto = document.querySelector(".popup_photo")
 // Кнопки
 const popEditBtn = document.querySelector(".profile__edit-button")
 const popAddBtn = document.querySelector(".profile__add-button")
-const popCloseBtn = document.querySelectorAll(".popup__container-close")
+const closePopButtons = document.querySelectorAll(".popup__container-close")
 
 // Формы
 const elems = document.querySelector(".elements")
-const popform = document.querySelector(".popup__form")
-const formAdd = popAdd.querySelector(".popup__form")
+const PopEditForm = document.forms["profile-form"]
+const PopAddForm = document.forms["element-form"]
 
 // Изменение значений 
 const inpName = document.querySelector(".popup__form-input_name")
@@ -61,15 +61,15 @@ popEditBtn.addEventListener("click", function() {
 	inpBio.value = proBio.textContent
 })
 
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
 	evt.preventDefault()
 	proName.textContent = inpName.value
 	proBio.textContent = inpBio.value
 	closePopup(popEdit)
 }
 
-function openPopup(e) {
-	e.classList.add("popup_opened")
+function openPopup(popup) {
+	popup.classList.add("popup_opened")
 }
 popAddBtn.addEventListener("click", function() {
 	openPopup(popAdd)
@@ -78,11 +78,11 @@ popAddBtn.addEventListener("click", function() {
 function closePopup(popup) {
 	popup.classList.remove("popup_opened")
 }
-popCloseBtn.forEach((closeButton) => {
+closePopButtons.forEach((closeButton) => {
 	const popup = closeButton.closest(".popup")
 	closeButton.addEventListener("click", () => closePopup(popup))
 })
-popform.addEventListener("submit", handleFormSubmit)
+PopEditForm.addEventListener("submit", handleProfileFormSubmit)
 
 function openImagePop(image, text) {
 	openPopup(popPhoto)
@@ -120,8 +120,8 @@ function addElem(src, alt) {
 	elems.prepend(card)
 }
 
-initialCards.forEach(function(Add) {
-	addElem(Add.link, Add.name)
+initialCards.forEach(function(elemAdd) {
+	addElem(elemAdd.link, elemAdd.name)
 })
 
 function saveElems(evt) {
@@ -133,4 +133,4 @@ function saveElems(evt) {
 	closePopup(popAdd)
 }
 
-formAdd.addEventListener("submit", saveElems)
+PopAddForm.addEventListener("submit", saveElems)
