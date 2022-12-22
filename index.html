@@ -58,7 +58,7 @@
   <!-- Popup -->
   <div class="popup popup_edit">
     <div class="popup__container ">
-      <button type="button" class="popup__container-close popup__container-close_edit" title="Закрыть"></button>
+      <button type="button" class="popup__container-close" title="Закрыть"></button>
       <h3 class="popup__container-info">Редактировать профиль</h3>
       <form class="popup__form" name="profile-form">
         <input type="text" placeholder="Имя" class="popup__form-input popup__form-input_name" name="name" required
@@ -75,13 +75,13 @@
   <!-- Popup_add-->
   <div class="popup popup_add">
     <div class="popup__container">
-      <button class="popup__container-close popup__container-close_add" title="Закрыть"></button>
+      <button class="popup__container-close" title="Закрыть"></button>
       <h3 class="popup__container-info">Новое место</h3>
       <form class="popup__form" name="element-form">
         <input type="text" placeholder="Название" class="popup__form-input popup__form-input_title" id="place-title"
           name="title" minlength="2" maxlength="30" required>
         <span id="place-title-error" class="popup__error"></span>
-        <input type="url" placeholder="Ссылка на картинку" class="popup__form-input  popup__form-input_link" type="url"
+        <input type="url" placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_link" type="url"
           id="place-link" name="link" required>
         <span id="place-link-error" class="popup__error"></span>
         <button type="submit" title="сохранить" class="popup__form-submit" disabled>Сохранить</button>
@@ -94,7 +94,7 @@
     <div class="popup__images">
       <img alt="#" class="popup__image">
       <p class="popup__photo-text"></p>
-      <button class="popup__container-close popup__container-close_photo" title="Закрыть"></button>
+      <button class="popup__container-close " title="Закрыть"></button>
     </div>
   </div>
   <script src="./scripts/index.js"></script>

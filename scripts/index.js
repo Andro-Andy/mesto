@@ -54,12 +54,9 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ]
-
-
-
-const KEYESC = 'Escape';
+const ESC = 'Escape';
 const closePopupEsc = (evt) => {
-  if (evt.key === KEYESC) {
+  if (evt.key === ESC) {
     closePopup(document.querySelector(`.popup_opened`));
   }
 };
@@ -82,10 +79,10 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEsc);
   popup.classList.remove('popup_opened');
 }
-const handlePopupClose = (evt) => {
-    const isOverlay = evt.target.classList.contains("popup");
-    const isClose = evt.target.classList.contains("popup__container-close");
-    if (isOverlay || isClose) {
+const popClose = (evt) => {
+    const screen = evt.target.classList.contains("popup");
+    const close = evt.target.classList.contains("popup__container-close");
+    if (screen || close) {
       closePopup();
     }
 };
@@ -114,30 +111,9 @@ function handleProfileFormSubmit(evt) {
 	proBio.textContent = inpBio.value
 	closePopup(popEdit)
 }
-// Открытие && закрытие popup
-// function openPopup(popup) {
-// 	popup.classList.add("popup_opened")
-// }
-// popAddBtn.addEventListener("click", function() {
-// 	openPopup(popAdd)
-// })
-
-// function closePopup(popup) {
-// 	popup.classList.remove("popup_opened")
-// }
-// closePopButtons.forEach((closeButton) => {
-// 	const popup = closeButton.closest(".popup")
-// 	closeButton.addEventListener("click", () => closePopup(popup))
-// })
-// PopEditForm.addEventListener("submit", handleProfileFormSubmit)
-
-function openImagePop(image, text) {
-	openPopup(popPhoto)
-	popImage.setAttribute("src", image)
-	popImageText.textContent = text
-	popImage.setAttribute("alt", text)
-}
-
+PopEditForm.addEventListener("submit", handleProfileFormSubmit)
+ 
+// Генерация карточек
 function createElement(src, alt) {
 	const template = document.querySelector("#element").content
 	const element = template.querySelector(".element").cloneNode(true)
@@ -158,6 +134,13 @@ function createElement(src, alt) {
 
 	return element
 }
+
+function openImagePop(image, text) {
+	openPopup(popPhoto)
+	popImage.setAttribute("src", image)
+	popImageText.textContent = text
+	popImage.setAttribute("alt", text)
+} 
 
 function addElem(src, alt) {
 	const card = createElement(src, alt)
