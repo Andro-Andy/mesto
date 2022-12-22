@@ -44,7 +44,7 @@
   </main>
   <template id="element">
     <div class="element">
-      <img type="button" class="element__image"></img>
+      <img type="button" class="element__image">
       <div class="element__info">
         <button type="button" class="element__delete"></button>
         <h2 class="element__title"></h2>
@@ -78,7 +78,7 @@
         <input type="text" placeholder="Название" class="popup__form-input popup__form-input_title" id="place-title"
           name="title" minlength="2" maxlength="30" required>
         <span id="place-title-error" class="popup__error"></span>
-        <input type="url" placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_link" type="url"
+        <input placeholder="Ссылка на картинку" class="popup__form-input popup__form-input_link" type="url"
           id="place-link" name="link" required>
         <span id="place-link-error" class="popup__error"></span>
         <button type="submit" title="сохранить" class="popup__form-submit" disabled>Сохранить</button>
