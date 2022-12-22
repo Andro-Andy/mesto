@@ -43,7 +43,6 @@
 @import url('../blocks/popup/__container-info/popup__container-info.css');
 @import url('../blocks/popup/__form/popup__form.css');
 @import url('../blocks/popup/__form-input/popup__form-input.css');
-@import url('../blocks/popup/__form-input/popup__form-input.css');
 @import url('../blocks/popup/__form-input/_error/popup__form-input_error.css');
 @import url('../blocks/popup/__form-input/_invalid/popup__form-input_invalid.css');
 @import url('../blocks/popup/__form-submit/popup__form-submit.css');
