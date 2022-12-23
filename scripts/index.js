@@ -72,25 +72,11 @@ function closePopup(popup) {
 	document.removeEventListener('keydown', closePopupEsc);
 	popup.classList.remove('popup_opened');
 }
-const popClose = (evt) => {
-	const screen = evt.target.classList.contains("popup");
-	const close = evt.target.classList.contains("popup__container-close");
-	if (screen || close) {
-		closePopup();
-	}
-};
-
 closePopButtons.forEach(closeButton => {
 	const popup = closeButton.closest('.popup');
 	closeButton.addEventListener('click', () => closePopup(popup));
 });
 
-function handleFormSubmit(evt) {
-	evt.preventDefault();
-	profileName.textContent = nameInput.value;
-	profileJob.textContent = jobInput.value;
-	closePopup(popEdit);
-}
 // Сохранение popup_edit
 popEditBtn.addEventListener("click", function() {
 	openPopup(popEdit)
@@ -114,16 +100,13 @@ function createElement(src, alt) {
 	elemImage.setAttribute("src", src)
 	elemImage.setAttribute("alt", alt)
 	element.querySelector(".element__title").textContent = alt
-		// element.querySelector(".element__like").addEventListener("click", function(like) {like.target.classList.toggle("element__like-active")})
 	element.addEventListener('click', function(evt) {
 		if (evt.target.classList.contains('element__like')) {
 			evt.target.classList.toggle('element__like-active')
 		}
 	});
-
-	// element.addEventListener('click', function (evt) { if (evt.target.classList.contains('element__delete')) {evt.target.closest('.element').remove}});  
-	element.querySelector(".element__delete").addEventListener("click", function(del) {
-		del.target.closest(".element").remove()
+	 element.querySelector(".element__delete").addEventListener("click", function(del) {
+	 del.target.closest(".element").remove()
 	})
 	elemImage.addEventListener("click", function(event) {
 		openImagePop(src, alt)
@@ -148,7 +131,7 @@ initialCards.forEach(function(elemAdd) {
 	addElem(elemAdd.link, elemAdd.name)
 })
 
-function saveElems(evt) {
+function handleElems(evt) {
 	evt.preventDefault()
 	const name = popAddTitle.value
 	const linkImage = popAddLink.value
@@ -157,4 +140,4 @@ function saveElems(evt) {
 	closePopup(popAdd)
 }
 
-PopAddForm.addEventListener("submit", saveElems)
+PopAddForm.addEventListener("submit", handleElems)

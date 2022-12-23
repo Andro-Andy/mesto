@@ -11,20 +11,14 @@ const checkInpValidity = (input, {
 	errorClass, inputErrorClass
 }) => {
 	const error = document.querySelector(`#${input.id}-error`);
-	let inps = (input.validity.valid) ? error.textContent = '' && input.classList.remove(inputErrorClass) && error.classList.remove(errorClass) : error.textContent = input.validationMessage && error.classList.add(errorClass) && input.classList.add(inputErrorClass);
-}
-const toggleSubmitButton = (inputs, button, {
-	inactiveButtonClass
-}) => {
-	const isFormValid = inputs.every(input => input.validity.valid)
-
-	if (isFormValid) {
-		button.classList.remove(inactiveButtonClass);
-		button.disabled = '';
-
+	if (input.validity.valid) {
+		 error.textContent = ''; 
+		 input.classList.remove(inputErrorClass);  
+		 error.classList.remove(errorClass);
 	} else {
-		button.classList.add(inactiveButtonClass);
-		button.disabled = 'disabled';
+		error.textContent = input.validationMessage ;
+		error.classList.add(errorClass);
+    input.classList.add(inputErrorClass);
 	}
 }
 const disabledSubmitButton = (button, {
@@ -33,6 +27,20 @@ const disabledSubmitButton = (button, {
 	button.classList.add(inactiveButtonClass);
 	button.disabled = 'disabled';
 }
+
+const toggleSubmitButton = (inputs, button, {
+	inactiveButtonClass
+}) => {
+	const isFormValid = inputs.every(input => input.validity.valid)
+
+	if (isFormValid) {
+		button.classList.remove(inactiveButtonClass);
+		button.disabled = '';
+	} else {
+		disabledSubmitButton(button , inactiveButtonClass)
+	}
+}
+
 const validation = ({
 	formSelector, inputSelector, submitButtonSelector, ...vals
 }) => {
