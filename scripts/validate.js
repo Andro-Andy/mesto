@@ -21,8 +21,7 @@ const checkInpValidity = (input, {
     input.classList.add(inputErrorClass);
 	}
 }
-const disabledSubmitButton = (button, {
-	inactiveButtonClass
+const disabledSubmitButton = (button, {	inactiveButtonClass
 }) => {
 	button.classList.add(inactiveButtonClass);
 	button.disabled = 'disabled';
@@ -37,9 +36,10 @@ const toggleSubmitButton = (inputs, button, {
 		button.classList.remove(inactiveButtonClass);
 		button.disabled = '';
 	} else {
-		disabledSubmitButton(button , inactiveButtonClass)
+		disabledSubmitButton(button , {inactiveButtonClass})
 	}
 }
+
 
 const validation = ({
 	formSelector, inputSelector, submitButtonSelector, ...vals

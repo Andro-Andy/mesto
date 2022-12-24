@@ -53,12 +53,21 @@ const closePopupEsc = (evt) => {
 		closePopup(document.querySelector(`.popup_opened`));
 	}
 };
-document.addEventListener("click", (e) => {
+popEdit.addEventListener("click", (e) => {
 	if (e.target.classList.contains("popup")) {
 		closePopup(e.target);
 	}
 });
-
+popAdd.addEventListener("click", (e) => {
+	if (e.target.classList.contains("popup")) {
+		closePopup(e.target);
+	}
+});
+popPhoto.addEventListener("click", (e) => {
+	if (e.target.classList.contains("popup")) {
+		closePopup(e.target);
+	}
+});
 popAddBtn.addEventListener('click', function() {
 	openPopup(popAdd);
 });

@@ -9,7 +9,6 @@
   font-size: 18px;
   line-height: 22px;
   width: 100%;
-  margin-top: 45px;
   cursor: pointer;
   transition: opacity 0.2s linear;
 }
@@ -22,6 +21,5 @@
   .popup__form-submit {
     line-height: 17px;
     font-size: 14px;
-
   }
 }
