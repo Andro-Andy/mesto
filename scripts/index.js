@@ -15,7 +15,7 @@ const KEYESC = 'Escape';
 const elems = document.querySelector(".elements")
 const PopEditForm = document.forms["profile-form"]
 const PopAddForm = document.forms["element-form"]
-const formAdd = popAdd.querySelector('.popup__form');
+const formAdd = popAdd.querySelector('.popup__form')
 
 // Изменение значений
 const inpName = document.querySelector(".popup__form-input_name")
