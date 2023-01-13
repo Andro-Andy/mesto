@@ -98,7 +98,7 @@ closePopButtons.forEach((closeButton) => {
 	closeButton.addEventListener("click", () => closePopup(popup))
 })
 
-initialCards.forEach(generation)
+initialCards.forEach(render)
 
 popEditBtn.addEventListener("click", function () {
 	openPopup(popEdit)
@@ -106,17 +106,17 @@ popEditBtn.addEventListener("click", function () {
 	inpBio.value = proBio.textContent
 })
 
-function imageClick(data) {
+function handleImageClick(data) {
 	popImageText.textContent = data.name
 	popImage.src = data.link
 	popImage.alt = data.name
 	openPopup(popPhoto)
 }
 
-function generation(data) {
-	const element = new Card(data, "#element", imageClick)
-	const newElem = element.createElement()
-	elems.prepend(newElem)
+function render(data) {
+	const item = new Card(data, "#element", handleImageClick)
+	const newItem = item.createElement()
+	elems.prepend(newItem)
 }
 
 popAddBtn.addEventListener("click", () => {
@@ -133,12 +133,12 @@ PopEditForm.addEventListener("submit", function submitformHandler(evt) {
 PopAddForm.addEventListener("submit", function submitformHandler(evt) {
 	evt.preventDefault()
 
-	const newElement = {
+	const newcard = {
 		name: popAddTitle.value,
 		link: popAddLink.value,
 	}
 
-	generation(newElement)
+	render(newcard)
 	closePopup(popAdd)
 	PopAddForm.reset()
 })

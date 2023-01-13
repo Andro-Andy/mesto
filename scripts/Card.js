@@ -1,38 +1,40 @@
 export default class Card {
-  constructor(item, elemsTemplate, openImage) {
-    this._item = item
-    this._elementTemplate = document
-      .querySelector(elemsTemplate)
+  constructor(data, itemTemplateSelector, handleOpenImage) {
+    this._data = data
+    this._itemTemplate = document
+      .querySelector(itemTemplateSelector)
       .content.querySelector(".element")
-    this._elementCard = this._elementTemplate.cloneNode(true)
-    this._cardImage = this._elementCard.querySelector(".element__image")
-    this._elementLikeButton = this._elementCard.querySelector(".element__like")
-    this._elementDeleteButton =
-      this._elementCard.querySelector(".element__delete")
-    this._openImage = openImage
-  }
-
-  _deleteButton = () => {
-    this._elementCard.remove()
+    this._itemElement = this._itemTemplate.cloneNode(true)
+    this._itemDeleteButton = this._itemElement.querySelector(".element__delete")
+    this._itemLikeButton = this._itemElement.querySelector(".element__like")
+    this._cardImage = this._itemElement.querySelector(".element__image")
+    this._handleOpenImage = handleOpenImage
   }
 
   _likeButton = () => {
-    this._elementLikeButton.classList.toggle("element__like-active")
+    this._itemLikeButton.classList.toggle("element__like-active")
   }
-
+  _deleteButton = () => {
+    this._itemElement.remove()
+  }
   _setEventListeners() {
-    this._elementLikeButton.addEventListener("click", this._likeButton)
-    this._elementDeleteButton.addEventListener("click", this._deleteButton)
-    this._cardImage.addEventListener("click", () => this._openImage(this._item))
+    this._itemLikeButton.addEventListener("click", this._likeButton)
+    this._itemDeleteButton.addEventListener(
+      "click",
+      this._deleteButton
+    )
+    this._cardImage.addEventListener("click", () =>
+      this._handleOpenImage(this._data)
+    )
   }
 
-  createCard() {
-    const elementImage = this._elementCard.querySelector(".popup__image")
-    const elementTitle = this._elementCard.querySelector(".popup__photo-text")
-    elementTitle.textContent = this._item.name
-    elementImage.src = this._item.link
-    elementImage.alt = this._item.name
+  createElement() {
+    const itemImage = this._itemElement.querySelector(".popup__image")
+    const itemTitle = this._itemElement.querySelector(".popup__photo-text")
+    itemTitle.textContent = this._data.name
+    itemImage.src = this._data.link
+    itemImage.alt = this._data.name
     this._setEventListeners()
-    return this._elementCard
+    return this._itemElement
   }
 }
