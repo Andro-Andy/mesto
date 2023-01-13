@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+import FormValidator from './FormValidator.js';
 // Попапы
 const popEdit = document.querySelector(".popup_edit")
 const popAdd = document.querySelector(".popup_add")
@@ -7,19 +9,21 @@ const popPhoto = document.querySelector(".popup_photo")
 const popEditBtn = document.querySelector(".profile__edit-button")
 const popAddBtn = document.querySelector(".profile__add-button")
 const closePopButtons = document.querySelectorAll(".popup__container-close")
+const KEYESC = 'Escape';
 
 // Формы
 const elems = document.querySelector(".elements")
 const PopEditForm = document.forms["profile-form"]
 const PopAddForm = document.forms["element-form"]
+const formAdd = popAdd.querySelector('.popup__form');
 
-// Изменение значений 
+// Изменение значений
 const inpName = document.querySelector(".popup__form-input_name")
 const inpBio = document.querySelector(".popup__form-input_bio")
 const proName = document.querySelector(".profile__name")
 const proBio = document.querySelector(".profile__bio")
 
-// Значения для карточки 
+// Значения для карточки
 const popAddTitle = popAdd.querySelector(".popup__form-input_title")
 const popAddLink = popAdd.querySelector(".popup__form-input_link")
 
@@ -27,7 +31,17 @@ const popAddLink = popAdd.querySelector(".popup__form-input_link")
 const popImage = popPhoto.querySelector(".popup__image")
 const popImageText = popPhoto.querySelector(".popup__photo-text")
 
-// Массив 
+
+const enableValidation = {
+	formSelector: '.popup__form',
+	inputSelector: '.popup__form-input',
+	submitButtonSelector: '.popup__form-submit',
+	inactiveButtonClass: 'popup__form-submit_invalid',
+	inputErrorClass: 'popup__form-input_error',
+	errorClass: 'popup__error_visibility'
+};
+
+// Массив
 const initialCards = [{
 	name: "Архыз",
 	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -46,107 +60,79 @@ const initialCards = [{
 }, {
 	name: "Байкал",
 	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-}, ]
-const ESC = 'Escape';
+},]
+
+
+const validationPopupProfile = new FormValidator(enableValidation, popEdit);
+validationPopupProfile.enableValidation();
+
+const validationPopupAdd = new FormValidator(enableValidation, formAdd);
+validationPopupAdd.enableValidation();
+
 const closePopupEsc = (evt) => {
-	if (evt.key === ESC) {
+	if (evt.key === KEYESC) {
 		closePopup(document.querySelector(`.popup_opened`));
 	}
 };
-popEdit.addEventListener("click", (e) => {
+document.addEventListener("click", (e) => {
 	if (e.target.classList.contains("popup")) {
 		closePopup(e.target);
 	}
 });
-popAdd.addEventListener("click", (e) => {
-	if (e.target.classList.contains("popup")) {
-		closePopup(e.target);
-	}
+function openPopup(popup) {
+	document.addEventListener("keydown", closePopupEsc);
+	popup.classList.add("popup_opened");
+}
+function closePopup(popup) {
+	document.removeEventListener("keydown", closePopupEsc);
+	popup.classList.remove("popup_opened");
+}
+closePopButtons.forEach((closeButton) => {
+	const popup = closeButton.closest(".popup");
+	closeButton.addEventListener("click", () => closePopup(popup));
 });
-popPhoto.addEventListener("click", (e) => {
-	if (e.target.classList.contains("popup")) {
-		closePopup(e.target);
-	}
+
+initialCards.forEach(render);
+
+popEditBtn.addEventListener("click", function () {
+	openPopup(popEdit);
+	inpName.value = proName.textContent;
+	inpBio.value = proBio.textContent;
 });
-popAddBtn.addEventListener('click', function() {
+
+function handleImageClick(data) {
+	popImageText.textContent = data.name;
+	popImage.src = data.link;
+	popImage.alt = data.name;
+	openPopup(popPhoto);
+}
+
+function render(data) {
+	const item = new Card(data, "#element", handleImageClick);
+	const newItem = item.createElement();
+	elems.prepend(newItem);
+}
+
+popAddBtn.addEventListener("click", () => {
+	validationPopupAdd.resetFormErrors();
 	openPopup(popAdd);
 });
-
-function openPopup(popup) {
-	document.addEventListener('keydown', closePopupEsc);
-	popup.classList.add('popup_opened');
-}
-
-function closePopup(popup) {
-	document.removeEventListener('keydown', closePopupEsc);
-	popup.classList.remove('popup_opened');
-}
-closePopButtons.forEach(closeButton => {
-	const popup = closeButton.closest('.popup');
-	closeButton.addEventListener('click', () => closePopup(popup));
+PopEditForm.addEventListener("submit", function submitformHandler(evt) {
+	evt.preventDefault();
+	proName.textContent = inpName.value;
+	proBio.textContent = inpBio.value;
+	closePopup(popEdit);
 });
 
-// Сохранение popup_edit
-popEditBtn.addEventListener("click", function() {
-	openPopup(popEdit)
-	inpName.value = proName.textContent
-	inpBio.value = proBio.textContent
-})
+PopAddForm.addEventListener("submit", function submitformHandler(evt) {
+	evt.preventDefault();
 
-function handleProfileFormSubmit(evt) {
-	evt.preventDefault()
-	proName.textContent = inpName.value
-	proBio.textContent = inpBio.value
-	closePopup(popEdit)
-}
-PopEditForm.addEventListener("submit", handleProfileFormSubmit)
+	const newcard = {
+		name: popAddTitle.value,
+		link: popAddLink.value,
+	};
 
-// Генерация карточек
-function createElement(src, alt) {
-	const template = document.querySelector("#element").content
-	const element = template.querySelector(".element").cloneNode(true)
-	const elemImage = element.querySelector(".element__image")
-	elemImage.setAttribute("src", src)
-	elemImage.setAttribute("alt", alt)
-	element.querySelector(".element__title").textContent = alt
-	element.addEventListener('click', function(evt) {
-		if (evt.target.classList.contains('element__like')) {
-			evt.target.classList.toggle('element__like-active')
-		}
-	});
-	 element.querySelector(".element__delete").addEventListener("click", function(del) {
-	 del.target.closest(".element").remove()
-	})
-	elemImage.addEventListener("click", function(event) {
-		openImagePop(src, alt)
-	})
-
-	return element
-}
-
-function openImagePop(image, text) {
-	openPopup(popPhoto)
-	popImage.setAttribute("src", image)
-	popImageText.textContent = text
-	popImage.setAttribute("alt", text)
-}
-
-function addElem(src, alt) {
-	const card = createElement(src, alt)
-	elems.prepend(card)
-}
-
-initialCards.forEach(function(elemAdd) {
-	addElem(elemAdd.link, elemAdd.name)
-})
-
-function handleElems(evt) {
-	evt.preventDefault()
-	const name = popAddTitle.value
-	const linkImage = popAddLink.value
-	addElem(linkImage, name)
-	evt.target.reset()
-	closePopup(popAdd)
-}
-
-PopAddForm.addEventListener("submit", handleElems)
+	render(newcard);
+	closePopup(popAdd);
+	PopAddForm.reset();
+});
