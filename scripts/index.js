@@ -1,6 +1,5 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-
+import Card from "./Card.js"
+import FormValidator from "./FormValidator.js"
 // Попапы
 const popEdit = document.querySelector(".popup_edit")
 const popAdd = document.querySelector(".popup_add")
@@ -10,13 +9,13 @@ const popPhoto = document.querySelector(".popup_photo")
 const popEditBtn = document.querySelector(".profile__edit-button")
 const popAddBtn = document.querySelector(".profile__add-button")
 const closePopButtons = document.querySelectorAll(".popup__container-close")
-const KEYESC = 'Escape';
+const KEYESC = "Escape"
 
 // Формы
 const elems = document.querySelector(".elements")
 const PopEditForm = document.forms["profile-form"]
 const PopAddForm = document.forms["element-form"]
-const formAdd = popAdd.querySelector('.popup__form')
+const formAdd = popAdd.querySelector(".popup__form")
 
 // Изменение значений
 const inpName = document.querySelector(".popup__form-input_name")
@@ -32,108 +31,114 @@ const popAddLink = popAdd.querySelector(".popup__form-input_link")
 const popImage = popPhoto.querySelector(".popup__image")
 const popImageText = popPhoto.querySelector(".popup__photo-text")
 
-
 const enableValidation = {
-	formSelector: '.popup__form',
-	inputSelector: '.popup__form-input',
-	submitButtonSelector: '.popup__form-submit',
-	inactiveButtonClass: 'popup__form-submit_invalid',
-	inputErrorClass: 'popup__form-input_error',
-	errorClass: 'popup__error_visibility'
-};
+	formSelector: ".popup__form",
+	inputSelector: ".popup__form-input",
+	submitButtonSelector: ".popup__form-submit",
+	inactiveButtonClass: "popup__form-submit_invalid",
+	inputErrorClass: "popup__form-input_error",
+	errorClass: "popup__error_visibility",
+}
 
 // Массив
-const initialCards = [{
-	name: "Архыз",
-	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-}, {
-	name: "Челябинская область",
-	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-}, {
-	name: "Иваново",
-	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-}, {
-	name: "Камчатка",
-	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-}, {
-	name: "Холмогорский район",
-	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-}, {
-	name: "Байкал",
-	link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-},]
+const initialCards = [
+	{
+		name: "Архыз",
+		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+	},
+	{
+		name: "Челябинская область",
+		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+	},
+	{
+		name: "Иваново",
+		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+	},
+	{
+		name: "Камчатка",
+		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+	},
+	{
+		name: "Холмогорский район",
+		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+	},
+	{
+		name: "Байкал",
+		link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+	},
+]
 
+const validationPopPro = new FormValidator(enableValidation, popEdit)
+validationPopPro.enableValidation()
 
-const validationPopupProfile = new FormValidator(enableValidation, popEdit);
-validationPopupProfile.enableValidation();
+const validationPopAdd = new FormValidator(enableValidation, formAdd)
+validationPopAdd.enableValidation()
 
-const validationPopupAdd = new FormValidator(enableValidation, formAdd);
-validationPopupAdd.enableValidation();
-
-const closePopupEsc = (evt) => {
+const closePopEsc = (evt) => {
 	if (evt.key === KEYESC) {
-		closePopup(document.querySelector(`.popup_opened`));
+		closePopup(document.querySelector(`.popup_opened`))
 	}
-};
+}
 document.addEventListener("click", (e) => {
 	if (e.target.classList.contains("popup")) {
-		closePopup(e.target);
+		closePopup(e.target)
 	}
-});
-function openPopup(popup) {
-	document.addEventListener("keydown", closePopupEsc);
-	popup.classList.add("popup_opened");
-}
+})
 function closePopup(popup) {
-	document.removeEventListener("keydown", closePopupEsc);
-	popup.classList.remove("popup_opened");
+	document.removeEventListener("keydown", closePopEsc)
+	popup.classList.remove("popup_opened")
 }
-closePopButtons.forEach((closeButton) => {
-	const popup = closeButton.closest(".popup");
-	closeButton.addEventListener("click", () => closePopup(popup));
-});
+function openPopup(popup) {
+	document.addEventListener("keydown", closePopEsc)
+	popup.classList.add("popup_opened")
+}
 
-initialCards.forEach(render);
+closePopButtons.forEach((closeButton) => {
+	const popup = closeButton.closest(".popup")
+	closeButton.addEventListener("click", () => closePopup(popup))
+})
+
+initialCards.forEach(render)
 
 popEditBtn.addEventListener("click", function () {
-	openPopup(popEdit);
-	inpName.value = proName.textContent;
-	inpBio.value = proBio.textContent;
-});
+	openPopup(popEdit)
+	inpName.value = proName.textContent
+	inpBio.value = proBio.textContent
+})
 
-function handleImageClick(data) {
-	popImageText.textContent = data.name;
-	popImage.src = data.link;
-	popImage.alt = data.name;
-	openPopup(popPhoto);
+function imageClick(item) {
+	popImageText.textContent = item.name
+	popImage.src = item.link
+	popImage.alt = item.name
+	openPopup(popPhoto)
 }
 
-function render(data) {
-	const item = new Card(data, "#element", handleImageClick);
-	const newItem = item.createElement();
-	elems.prepend(newItem);
+function generation(item) {
+	const item = new Card(item, "#element", imageClick)
+	const newItem = item.createElement()
+	elems.prepend(newItem)
 }
 
 popAddBtn.addEventListener("click", () => {
-	validationPopupAdd.resetFormErrors();
-	openPopup(popAdd);
-});
+	validationPopAdd.resetFormErrors()
+	openPopup(popAdd)
+})
 PopEditForm.addEventListener("submit", function submitformHandler(evt) {
-	evt.preventDefault();
-	proName.textContent = inpName.value;
-	proBio.textContent = inpBio.value;
-	closePopup(popEdit);
-});
+	evt.preventDefault()
+	proName.textContent = inpName.value
+	proBio.textContent = inpBio.value
+	closePopup(popEdit)
+})
 
 PopAddForm.addEventListener("submit", function submitformHandler(evt) {
-	evt.preventDefault();
+	evt.preventDefault()
 
-	const newcard = {
+	const newElement = {
 		name: popAddTitle.value,
 		link: popAddLink.value,
-	};
+	}
 
-	render(newcard);
-	closePopup(popAdd);
-	PopAddForm.reset();
-});
+	generation(newElement)
+	closePopup(popAdd)
+	PopAddForm.reset()
+})
