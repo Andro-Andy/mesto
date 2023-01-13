@@ -98,7 +98,7 @@ closePopButtons.forEach((closeButton) => {
 	closeButton.addEventListener("click", () => closePopup(popup))
 })
 
-initialCards.forEach(render)
+initialCards.forEach(generation)
 
 popEditBtn.addEventListener("click", function () {
 	openPopup(popEdit)
@@ -106,17 +106,17 @@ popEditBtn.addEventListener("click", function () {
 	inpBio.value = proBio.textContent
 })
 
-function imageClick(item) {
-	popImageText.textContent = item.name
-	popImage.src = item.link
-	popImage.alt = item.name
+function imageClick(data) {
+	popImageText.textContent = data.name
+	popImage.src = data.link
+	popImage.alt = data.name
 	openPopup(popPhoto)
 }
 
-function generation(item) {
-	const item = new Card(item, "#element", imageClick)
-	const newItem = item.createElement()
-	elems.prepend(newItem)
+function generation(data) {
+	const element = new Card(data, "#element", imageClick)
+	const newElem = element.createElement()
+	elems.prepend(newElem)
 }
 
 popAddBtn.addEventListener("click", () => {
