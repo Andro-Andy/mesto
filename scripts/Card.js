@@ -1,4 +1,4 @@
-export default class Card {
+export class Card {
   constructor(data, itemTemplateSelector, handleOpenImage) {
     this._data = data;
     this._itemTemplate = document.querySelector(itemTemplateSelector).content.querySelector('.element');
@@ -24,7 +24,7 @@ export default class Card {
   createElement() {
     const itemImage = this._itemElement.querySelector('.popup__image');
     const itemTitle = this._itemElement.querySelector('.popup__photo-text');
-    itemTitle.textContent = this._data.name;
+    itemTitle.textContent = this_data.name;
     itemImage.src = this._data.link;
     itemImage.alt = this._data.name;
     this._setEventListeners();

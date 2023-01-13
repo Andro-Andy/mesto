@@ -1,5 +1,6 @@
-import Card from "./Card.js";
-import FormValidator from './FormValidator.js';
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 // Попапы
 const popEdit = document.querySelector(".popup_edit")
 const popAdd = document.querySelector(".popup_add")
