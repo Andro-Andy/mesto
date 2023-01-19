@@ -1,4 +1,4 @@
-export default class FormValidator {
+export class FormValidator {
 
   constructor(enableValidation, form) {
     this._config = enableValidation;

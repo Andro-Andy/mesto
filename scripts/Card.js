@@ -1,4 +1,4 @@
-export default class Card {
+export class Card {
   constructor(data, itemTemplateSelector, OpenImage) {
     this._data = data
     this._createCard = document
