@@ -1,5 +1,6 @@
-import Card from "./Card.js"
+import Card from "./card.js"
 import FormValidator from "./FormValidator.js"
+
 // Попапы
 const popEdit = document.querySelector(".popup_edit")
 const popAdd = document.querySelector(".popup_add")
@@ -9,7 +10,7 @@ const popPhoto = document.querySelector(".popup_photo")
 const popEditBtn = document.querySelector(".profile__edit-button")
 const popAddBtn = document.querySelector(".profile__add-button")
 const closePopButtons = document.querySelectorAll(".popup__container-close")
-const KEYESC = "Escape"
+const ESC = "Escape"
 
 // Формы
 const elems = document.querySelector(".elements")
@@ -20,8 +21,8 @@ const formAdd = popAdd.querySelector(".popup__form")
 // Изменение значений
 const inpName = document.querySelector(".popup__form-input_name")
 const inpBio = document.querySelector(".popup__form-input_bio")
-const proName = document.querySelector(".profile__name")
-const proBio = document.querySelector(".profile__bio")
+const profileName = document.querySelector(".profile__name")
+const profileJob = document.querySelector(".profile__bio")
 
 // Значения для карточки
 const popAddTitle = popAdd.querySelector(".popup__form-input_title")
@@ -74,8 +75,8 @@ validationPopPro.enableValidation()
 const validationPopAdd = new FormValidator(enableValidation, formAdd)
 validationPopAdd.enableValidation()
 
-const closePopEsc = (evt) => {
-	if (evt.key === KEYESC) {
+const closePopupEsc = (evt) => {
+	if (evt.key === ESC) {
 		closePopup(document.querySelector(`.popup_opened`))
 	}
 }
@@ -84,15 +85,14 @@ document.addEventListener("click", (e) => {
 		closePopup(e.target)
 	}
 })
-function closePopup(popup) {
-	document.removeEventListener("keydown", closePopEsc)
-	popup.classList.remove("popup_opened")
-}
 function openPopup(popup) {
-	document.addEventListener("keydown", closePopEsc)
+	document.addEventListener("keydown", closePopupEsc)
 	popup.classList.add("popup_opened")
 }
-
+function closePopup(popup) {
+	document.removeEventListener("keydown", closePopupEsc)
+	popup.classList.remove("popup_opened")
+}
 closePopButtons.forEach((closeButton) => {
 	const popup = closeButton.closest(".popup")
 	closeButton.addEventListener("click", () => closePopup(popup))
@@ -102,19 +102,19 @@ initialCards.forEach(render)
 
 popEditBtn.addEventListener("click", function () {
 	openPopup(popEdit)
-	inpName.value = proName.textContent
-	inpBio.value = proBio.textContent
+	inpName.value = profileName.textContent
+	inpBio.value = profileJob.textContent
 })
 
-function imageClick(item) {
-	popImageText.textContent = item.name
-	popImage.src = item.link
-	popImage.alt = item.name
+function imageClick(data) {
+	popImageText.textContent = data.name
+	popImage.src = data.link
+	popImage.alt = data.name
 	openPopup(popPhoto)
 }
 
-function generation(item) {
-	const item = new Card(item, "#element", imageClick)
+function render(data) {
+	const item = new Card(data, "#element", imageClick)
 	const newItem = item.createElement()
 	elems.prepend(newItem)
 }
@@ -125,20 +125,20 @@ popAddBtn.addEventListener("click", () => {
 })
 PopEditForm.addEventListener("submit", function submitformHandler(evt) {
 	evt.preventDefault()
-	proName.textContent = inpName.value
-	proBio.textContent = inpBio.value
+	profileName.textContent = inpName.value
+	profileJob.textContent = inpBio.value
 	closePopup(popEdit)
 })
 
 PopAddForm.addEventListener("submit", function submitformHandler(evt) {
 	evt.preventDefault()
 
-	const newElement = {
+	const newcard = {
 		name: popAddTitle.value,
 		link: popAddLink.value,
 	}
 
-	generation(newElement)
+	render(newcard)
 	closePopup(popAdd)
 	PopAddForm.reset()
 })
