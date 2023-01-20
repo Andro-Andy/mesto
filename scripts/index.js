@@ -1,46 +1,6 @@
 import { Card } from "./Card.js"
 import { FormValidator } from "./FormValidator.js"
 
-// Попапы
-const popEdit = document.querySelector(".popup_edit")
-const popAdd = document.querySelector(".popup_add")
-const popPhoto = document.querySelector(".popup_photo")
-
-// Кнопки
-const popEditBtn = document.querySelector(".profile__edit-button")
-const popAddBtn = document.querySelector(".profile__add-button")
-const closePopButtons = document.querySelectorAll(".popup__container-close")
-const ESC = "Escape"
-
-// Формы
-const elems = document.querySelector(".elements")
-const PopEditForm = document.forms["profile-form"]
-const PopAddForm = document.forms["element-form"]
-const formAdd = popAdd.querySelector(".popup__form")
-
-// Изменение значений
-const inpName = document.querySelector(".popup__form-input_name")
-const inpBio = document.querySelector(".popup__form-input_bio")
-const profileName = document.querySelector(".profile__name")
-const profileJob = document.querySelector(".profile__bio")
-
-// Значения для карточки
-const popAddTitle = popAdd.querySelector(".popup__form-input_title")
-const popAddLink = popAdd.querySelector(".popup__form-input_link")
-
-// Данные карточки
-const popImage = popPhoto.querySelector(".popup__image")
-const popImageText = popPhoto.querySelector(".popup__photo-text")
-
-const enableValidation = {
-	formSelector: ".popup__form",
-	inputSelector: ".popup__form-input",
-	submitButtonSelector: ".popup__form-submit",
-	inactiveButtonClass: "popup__form-submit_invalid",
-	inputErrorClass: "popup__form-input_error",
-	errorClass: "popup__error_visibility",
-}
-
 // Массив
 const initialCards = [
 	{
@@ -69,6 +29,49 @@ const initialCards = [
 	},
 ]
 
+// Попапы
+const popEdit = document.querySelector(".popup_edit")
+const popAdd = document.querySelector(".popup_add")
+const popPhoto = document.querySelector(".popup_photo")
+
+// Кнопки
+const popEditBtn = document.querySelector(".profile__edit-button")
+const popAddBtn = document.querySelector(".profile__add-button")
+const closeButtonsPopup = document.querySelectorAll(".popup__container-close")
+const ESC = "Escape"
+
+// Формы
+const elems = document.querySelector(".elements")
+const popEditForm = document.forms["profile-form"]
+const popAddForm = document.forms["element-form"]
+const formAdd = popAdd.querySelector(".popup__form")
+
+// Изменение значений
+const inpName = document.querySelector(".popup__form-input_name")
+const inpBio = document.querySelector(".popup__form-input_bio")
+const profileName = document.querySelector(".profile__name")
+const profileJob = document.querySelector(".profile__bio")
+
+// Значения для карточки
+const popAddTitle = popAdd.querySelector(".popup__form-input_title")
+const popAddLink = popAdd.querySelector(".popup__form-input_link")
+
+// Данные карточки
+const popImage = popPhoto.querySelector(".popup__image")
+const popImageText = popPhoto.querySelector(".popup__photo-text")
+
+const enableValidation = {
+	formSelector: ".popup__form",
+	inputSelector: ".popup__form-input",
+	submitButtonSelector: ".popup__form-submit",
+	inactiveButtonClass: "popup__form-submit_invalid",
+	inputErrorClass: "popup__form-input_error",
+	errorClass: "popup__error_visibility",
+}
+
+
+
+
 const validationPopPro = new FormValidator(enableValidation, popEdit)
 validationPopPro.enableValidation()
 
@@ -80,7 +83,17 @@ const closePopupEsc = (evt) => {
 		closePopup(document.querySelector(`.popup_opened`))
 	}
 }
-document.addEventListener("click", (e) => {
+popEdit.addEventListener("click", (e) => {
+	if (e.target.classList.contains("popup")) {
+		closePopup(e.target)
+	}
+})
+popAdd.addEventListener("click", (e) => {
+	if (e.target.classList.contains("popup")) {
+		closePopup(e.target)
+	}
+})
+popPhoto.addEventListener("click", (e) => {
 	if (e.target.classList.contains("popup")) {
 		closePopup(e.target)
 	}
@@ -93,12 +106,12 @@ function closePopup(popup) {
 	document.removeEventListener("keydown", closePopupEsc)
 	popup.classList.remove("popup_opened")
 }
-closePopButtons.forEach((closeButton) => {
+closeButtonsPopup.forEach((closeButton) => {
 	const popup = closeButton.closest(".popup")
 	closeButton.addEventListener("click", () => closePopup(popup))
 })
 
-initialCards.forEach(render)
+initialCards.forEach(renderCard)
 
 popEditBtn.addEventListener("click", function () {
 	openPopup(popEdit)
@@ -113,7 +126,7 @@ function imageClick(data) {
 	openPopup(popPhoto)
 }
 
-function render(data) {
+function renderCard(data) {
 	const item = new Card(data, "#element", imageClick)
 	const newItem = item.createElement()
 	elems.prepend(newItem)
@@ -123,14 +136,14 @@ popAddBtn.addEventListener("click", () => {
 	validationPopAdd.resetFormErrors()
 	openPopup(popAdd)
 })
-PopEditForm.addEventListener("submit", function submitformHandler(evt) {
+popEditForm.addEventListener("submit", function submitformHandler(evt) {
 	evt.preventDefault()
 	profileName.textContent = inpName.value
 	profileJob.textContent = inpBio.value
 	closePopup(popEdit)
 })
 
-PopAddForm.addEventListener("submit", function submitformHandler(evt) {
+popAddForm.addEventListener("submit", function submitformHandler(evt) {
 	evt.preventDefault()
 
 	const newcard = {
@@ -138,7 +151,7 @@ PopAddForm.addEventListener("submit", function submitformHandler(evt) {
 		link: popAddLink.value,
 	}
 
-	render(newcard)
+	renderCard(newcard)
 	closePopup(popAdd)
-	PopAddForm.reset()
+	popAddForm.reset()
 })
