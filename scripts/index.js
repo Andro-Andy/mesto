@@ -69,9 +69,6 @@ const enableValidation = {
 	errorClass: "popup__error_visibility",
 }
 
-
-
-
 const validationPopPro = new FormValidator(enableValidation, popEdit)
 validationPopPro.enableValidation()
 
@@ -83,21 +80,16 @@ const closePopupEsc = (evt) => {
 		closePopup(document.querySelector(`.popup_opened`))
 	}
 }
-popEdit.addEventListener("click", (e) => {
+function handlePopupClose(e) {
 	if (e.target.classList.contains("popup")) {
 		closePopup(e.target)
 	}
-})
-popAdd.addEventListener("click", (e) => {
-	if (e.target.classList.contains("popup")) {
-		closePopup(e.target)
-	}
-})
-popPhoto.addEventListener("click", (e) => {
-	if (e.target.classList.contains("popup")) {
-		closePopup(e.target)
-	}
-})
+}
+popAdd.addEventListener('click', handlePopupClose)
+popEdit.addEventListener('click', handlePopupClose)
+popPhoto.addEventListener('click', handlePopupClose)
+
+
 function openPopup(popup) {
 	document.addEventListener("keydown", closePopupEsc)
 	popup.classList.add("popup_opened")
