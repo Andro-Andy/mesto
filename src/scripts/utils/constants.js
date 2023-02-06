@@ -2,7 +2,7 @@
 const popEdit = document.querySelector(".popup_edit")
 const popAdd = document.querySelector(".popup_add")
 
-// Значения профиля
+// Кнопки
 const popEditBtn = document.querySelector(".profile__edit-button")
 const popAddBtn = document.querySelector(".profile__add-button")
 

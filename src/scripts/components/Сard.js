@@ -9,7 +9,7 @@ export class Card {
     return createCard;
   }
 
-  _handleLikeButtonClick() {
+  _likeButtonClick() {
     this._itemLikeButton.classList.toggle("element__like-active");
   }
 
@@ -18,7 +18,7 @@ export class Card {
       this._itemElement.remove();
     });
     this._itemLikeButton.addEventListener("click", () => {
-      this._handleLikeButtonClick();
+      this._likeButtonClick();
     });
     this._itemImage.addEventListener("click", () => {
       this._handleOpenImage(this._data);
