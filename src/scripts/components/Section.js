@@ -8,9 +8,6 @@ export class Section {
   _clear() {
     this._container.innerHTML = '';
   }
-
-
-
   renderItems() {
     this._clear();
     this._initialArray.forEach((item) => this._renderer(item));

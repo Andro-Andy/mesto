@@ -7,7 +7,6 @@ import { PopupWithImage } from "./scripts/components/PopupWithImage.js";
 import { UserInfo } from "./scripts/components/UserInfo.js";
 import { popEdit, popEditBtn, popAddBtn, initialCards, inpName, inpBio, popAddForm } from "./scripts/utils/constants.js"
 
-
 function renderCard(data) {
 	const cardElement = new Card(data, '#element', handleImageClick);
 	const newElement = cardElement.createElement();
@@ -38,19 +37,19 @@ const newCardFormPopup = new PopupWithForm({
 	}
 });
 
+
+
 newCardFormPopup.setEventListeners();
 popAddBtn.addEventListener('click', () => {
-	validationPopAdd.resetValidation();
+	validationPopupAdd.resetValidation();
 	newCardFormPopup.open();
 })
 const userInfo = new UserInfo({ selectorName: (".profile__name"), selectorProf: (".profile__bio") });
-
-
 const userInfoFormPopup = new PopupWithForm({
 	selectorPopup: (".popup_edit"),
+
 	handleFormSubmit: (formData) => {
 		userInfo.setUserInfo(formData.name, formData.bio);
-
 		userInfoFormPopup.close();
 	},
 });
@@ -67,5 +66,5 @@ popEditBtn.addEventListener("click", () => {
 const validationPopupProfile = new FormValidator(popEdit);
 validationPopupProfile.enableValidation();
 
-const validationPopAdd = new FormValidator(popAddForm);
-validationPopAdd.enableValidation();
+const validationPopupAdd = new FormValidator(popAddForm);
+validationPopupAdd.enableValidation();
