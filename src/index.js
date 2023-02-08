@@ -1,11 +1,19 @@
-import './pages/index.css'
-import { Card } from "./scripts/components/Сard.js"
-import { FormValidator } from "./scripts/components/FormValidator.js"
+import './pages/index.css';
+import { Card } from "./scripts/components/Сard.js";
+import { FormValidator } from "./scripts/components/FormValidator.js";
 import { Section } from "./scripts/components/Section.js";
 import { PopupWithForm } from "./scripts/components/PopupWithForm.js";
 import { PopupWithImage } from "./scripts/components/PopupWithImage.js";
 import { UserInfo } from "./scripts/components/UserInfo.js";
-import { popEdit, popEditBtn, popAddBtn, initialCards, inpName, inpBio, popAddForm } from "./scripts/utils/constants.js"
+import {
+	popEdit,
+	popEditBtn,
+	popAddBtn,
+	inpName,
+	inpBio,
+	popAddForm,
+	initialCards
+} from "./scripts/utils/constants.js"
 
 function renderCard(data) {
 	const cardElement = new Card(data, '#element', handleImageClick);
@@ -13,52 +21,61 @@ function renderCard(data) {
 	return newElement;
 };
 
-const cardList = new Section({
+const elemList = new Section({
 	items: initialCards,
 	renderer: (item) => {
-		cardList.addItem(renderCard(item));
+		elemList.addItem(renderCard(item));
 	}
 }, '.elements');
+elemList.renderItems();
 
-
-cardList.renderItems();
-
-
-const popupWithImage = new PopupWithImage({ selectorPopup: ('.popup_photo') });
+const popupWithImage = new PopupWithImage({
+	selectorPopup: ('.popup_photo')
+});
 popupWithImage.setEventListeners();
+
 function handleImageClick(data) {
 	popupWithImage.open(data.name, data.link);
 };
 
-const newCardFormPopup = new PopupWithForm({
-	selectorPopup: (".popup_add"), handleFormSubmit: (data) => {
-		cardList.addItem(renderCard(data));
-		newCardFormPopup.close();
+const newElemFormPopup = new PopupWithForm({
+	selectorPopup: (".popup_add"),
+	handleFormSubmit: (data) => {
+		elemList.addItem(renderCard(data));
+		newElemFormPopup.close();
 	}
 });
 
-
-
-newCardFormPopup.setEventListeners();
+newElemFormPopup.setEventListeners();
 popAddBtn.addEventListener('click', () => {
 	validationPopupAdd.resetValidation();
-	newCardFormPopup.open();
+	newElemFormPopup.open();
 })
-const userInfo = new UserInfo({ selectorName: (".profile__name"), selectorProf: (".profile__bio") });
+
+const userInfo = new UserInfo({
+	selectorName: (".profile__name"),
+	selectorProf: (".profile__bio")
+});
+
 const userInfoFormPopup = new PopupWithForm({
 	selectorPopup: (".popup_edit"),
-
 	handleFormSubmit: (formData) => {
 		userInfo.setUserInfo(formData.name, formData.bio);
+
 		userInfoFormPopup.close();
+
 	},
+
 });
 
 userInfoFormPopup.setEventListeners();
 
 popEditBtn.addEventListener("click", () => {
 	userInfoFormPopup.open();
-	const { name, bio } = userInfo.getUserInfo();
+	const {
+		name,
+		bio
+	} = userInfo.getUserInfo();
 	inpName.value = name;
 	inpBio.value = bio;
 });

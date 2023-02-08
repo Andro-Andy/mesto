@@ -1,4 +1,5 @@
 export class FormValidator {
+
   static selectors = {
     formSelector: ".popup__form",
     inputSelector: ".popup__form-input",
