@@ -4,7 +4,7 @@
   "description": "\\*Проект по учебе JS.",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && webpack",
+    "build": "webpack --mode production",
     "dev": "webpack serve"
   },
   "repository": {
@@ -33,6 +33,6 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "core-js": "^3.27.2"
+    "core-js": "^2.6.12"
   }
 }

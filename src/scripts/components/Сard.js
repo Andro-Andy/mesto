@@ -2,11 +2,11 @@ export class Card {
   constructor(data, templateSelector, handleOpenImage) {
     this._data = data;
     this._templateSelector = templateSelector,
-      this._handleOpenImage = handleOpenImage
+      this._openImage = handleOpenImage
   }
   _getTemplate() {
-    const createCard = document.querySelector(this._templateSelector).content.querySelector(".element").cloneNode(true);
-    return createCard;
+    const createElement = document.querySelector(this._templateSelector).content.querySelector(".element").cloneNode(true);
+    return createElement;
   }
 
   _likeButtonClick() {
@@ -21,9 +21,10 @@ export class Card {
       this._likeButtonClick();
     });
     this._itemImage.addEventListener("click", () => {
-      this._handleOpenImage(this._data);
+      this._openImage(this._data);
     });
   }
+
   createElement() {
     this._itemElement = this._getTemplate();
     this._itemLikeButton = this._itemElement.querySelector(".element__like");
