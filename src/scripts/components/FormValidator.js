@@ -1,21 +1,13 @@
 export class FormValidator {
 
-  static selectors = {
-    formSelector: ".popup__form",
-    inputSelector: ".popup__form-input",
-    submitButtonSelector: ".popup__form-submit",
-    inactiveButtonClass: "popup__form-submit_invalid",
-    inputErrorClass: "popup__form-input_error",
-    errorClass: "popup__error_visibility",
-  };
-  constructor(formElement) {
-    this._formSelector = FormValidator.selectors.formSelector;
-    this._inputSelector = FormValidator.selectors.inputSelector;
-    this._submitButtonSelector = FormValidator.selectors.submitButtonSelector;
-    this._inactiveButtonClass = FormValidator.selectors.inactiveButtonClass;
-    this._inputErrorClass = FormValidator.selectors.inputErrorClass;
-    this._errorClass = FormValidator.selectors.errorClass;
+  constructor(validationSettings, formElement) {
     this._formElement = formElement;
+    this._formSelector = validationSettings.formSelector;
+    this._inputSelector = validationSettings.inputSelector;
+    this._submitButtonSelector = validationSettings.submitButtonSelector;
+    this._inactiveButtonClass = validationSettings.inactiveButtonClass;
+    this._inputErrorClass = validationSettings.inputErrorClass;
+    this._errorClass = validationSettings.errorClass;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
@@ -40,7 +32,7 @@ export class FormValidator {
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
+      return !inputElement.validity.valid
     });
   }
 

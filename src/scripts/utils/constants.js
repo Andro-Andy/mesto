@@ -32,8 +32,18 @@ const initialCards = [{
   name: "Байкал",
   link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
 },]
+
+const validationSettings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__form-input",
+  submitButtonSelector: ".popup__form-submit",
+  inactiveButtonClass: "popup__form-submit_invalid",
+  inputErrorClass: "popup__form-input_error",
+  errorClass: "popup__error_visibility",
+}
 // экспорт 
 export {
+  validationSettings,
   popEdit,
   popEditBtn,
   popAddBtn,

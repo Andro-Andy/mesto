@@ -1,11 +1,12 @@
-import './pages/index.css';
-import { Card } from "./scripts/components/Сard.js";
-import { FormValidator } from "./scripts/components/FormValidator.js";
-import { Section } from "./scripts/components/Section.js";
-import { PopupWithForm } from "./scripts/components/PopupWithForm.js";
-import { PopupWithImage } from "./scripts/components/PopupWithImage.js";
-import { UserInfo } from "./scripts/components/UserInfo.js";
+import './index.css';
+import { Card } from "../scripts/components/Сard.js";
+import { FormValidator } from "../scripts/components/FormValidator.js";
+import { Section } from "../scripts/components/Section.js";
+import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
+import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
+import { UserInfo } from "../scripts/components/UserInfo.js";
 import {
+	validationSettings,
 	popEdit,
 	popEditBtn,
 	popAddBtn,
@@ -13,7 +14,7 @@ import {
 	inpBio,
 	popAddForm,
 	initialCards
-} from "./scripts/utils/constants.js"
+} from "../scripts/utils/constants.js"
 
 function renderCard(data) {
 	const cardElement = new Card(data, '#element', handleImageClick);
@@ -80,8 +81,8 @@ popEditBtn.addEventListener("click", () => {
 	inpBio.value = bio;
 });
 
-const validationPopupProfile = new FormValidator(popEdit);
+const validationPopupProfile = new FormValidator(validationSettings, popEdit);
 validationPopupProfile.enableValidation();
 
-const validationPopupAdd = new FormValidator(popAddForm);
+const validationPopupAdd = new FormValidator(validationSettings, popAddForm);
 validationPopupAdd.enableValidation();
