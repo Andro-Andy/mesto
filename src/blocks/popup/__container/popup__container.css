@@ -9,7 +9,7 @@
   border-radius: 10px;
   margin: 0 auto;
   width: 430px;
-  height: 330px;
+  max-height: 330px;
   justify-content: space-between;
   right: 0;
   left: 0;

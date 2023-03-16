@@ -1,20 +1,17 @@
-import {
-  Popup
-} from './Popup.js';
-// Передача данных отрытого елемента
-export class PopupWithImage extends Popup {
-  constructor({
-    selectorPopup
-  }) {
-    super(selectorPopup);
-    this._popupCardImage = this._popup.querySelector('.popup__image');
-    this._popupCardText = this._popup.querySelector('.popup__photo-text');
-  }
-  open(title, link) {
-    this._popupCardImage.src = link;
-    this._popupCardImage.alt = title;
-    this._popupCardText.textContent = title;
+import { Popup } from './Popup.js'
 
-    super.open();
+export class PopupWithImage extends Popup {
+  constructor(popupSelector) {
+    super(popupSelector)
+    this._popupImageBigItem = this._popupElement.querySelector('.popup__image')
+    this._popupImageBigName = this._popupElement.querySelector('.popup__photo-text')
+  }
+
+  open(name, link) {
+    this._popupImageBigItem.src = link
+    this._popupImageBigItem.alt = name
+    this._popupImageBigName.textContent = name
+
+    super.open()
   }
 }

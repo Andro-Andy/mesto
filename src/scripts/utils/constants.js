@@ -1,54 +1,53 @@
-// Попапы
-const popEdit = document.querySelector(".popup_edit")
+
+//Попапы
+const popAvatarEdit = '.popup_avatar-edit'
+
+// Формы
+const popEditForm = document.forms['edit__form']
+const popAddForm = document.forms['add__form']
+const popAvatarForm = document.forms['edit__avatar-form']
+
+// Avatar Input
+const inpAvatarLink = popAvatarForm.querySelector('.popup__form-input_link')
 
 // Кнопки
-const popEditBtn = document.querySelector(".profile__edit-button")
-const popAddBtn = document.querySelector(".profile__add-button")
+const profileEditBtn = document.querySelector('.profile__edit-button')
+const profileAddBtn = document.querySelector('.profile__add-button')
+const profileAvatarBtn = document.querySelector('.profile__avatar-edit')
 
-// Поля ввода
-const inpName = document.querySelector(".popup__form-input_name")
-const inpBio = document.querySelector(".popup__form-input_bio")
 
-// Форма
-const popAddForm = document.forms["element-form"]
+// Селекторы
+const popupImageSelector = '.popup_photo'
+const elementContainer = '.elements'
+const elementTemplate = '#element'
 
-// Массив
-const initialCards = [{
-  name: "Архыз",
-  link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-}, {
-  name: "Челябинская область",
-  link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-}, {
-  name: "Иваново",
-  link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-}, {
-  name: "Камчатка",
-  link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-}, {
-  name: "Холмогорский район",
-  link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-}, {
-  name: "Байкал",
-  link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-},]
+const profileSelector = {
+  selectorName: '.profile__name',
+  selectorProf: '.profile__bio',
+  selectorAvatar: '.profile__avatar-edit'
+}
 
 const validationSettings = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__form-input",
-  submitButtonSelector: ".popup__form-submit",
-  inactiveButtonClass: "popup__form-submit_invalid",
-  inputErrorClass: "popup__form-input_error",
-  errorClass: "popup__error_visibility",
+  inputSelector: '.popup__form-input',
+  submitButtonSelector: '.popup__form-submit',
+  inactiveButtonClass: 'popup__form-submit_invalid',
+  inputErrorClass: 'popup__form-input_error',
+  errorClass: 'popup__error_visible',
 }
-// экспорт 
+
+// экспорт
 export {
+  popAvatarEdit,
+  popEditForm,
+  popAddForm,
+  popAvatarForm,
+  inpAvatarLink,
+  profileEditBtn,
+  profileAddBtn,
+  profileAvatarBtn,
+  popupImageSelector,
+  elementContainer,
+  elementTemplate,
+  profileSelector,
   validationSettings,
-  popEdit,
-  popEditBtn,
-  popAddBtn,
-  initialCards,
-  inpName,
-  inpBio,
-  popAddForm
 }
