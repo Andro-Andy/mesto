@@ -86,7 +86,7 @@ export class Card {
     )
 
     this._deleteCardBtn.addEventListener('click', () => {
-      this._handleDeleteBtnClick(this._cardId, this._card)
+      this._handleDeleteBtnClick(this._cardId, this)
     })
   }
   deleteElement() {
