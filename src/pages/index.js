@@ -113,7 +113,7 @@ const handleDeleteElement = (id, card) => {
 		.deleteElement(id)
 		.then((res) => {
 			card.deleteElement()
-			card.close()
+			popupWithSubmit.close()
 		})
 		.catch((error) => {
 			console.log(error)
