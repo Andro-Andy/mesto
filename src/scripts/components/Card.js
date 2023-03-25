@@ -8,12 +8,12 @@ export class Card {
     this._handleElementClick = handleElementClick
     this._handleLikeClick = handleLikeClick
     this._handleDeleteBtnClick = handleDeleteBtnClick
-    this._newElement = this._getTemplate()
-    this._likeCardBtn = this._newElement.querySelector('.element__like')
-    this._elementName = this._newElement.querySelector('.element__title')
-    this._elementLink = this._newElement.querySelector('.element__image')
-    this._deleteCardBtn = this._newElement.querySelector('.element__delete')
-    this._counterLikes = this._newElement.querySelector('.element__counter-likes')
+    this._card = this._getTemplate()
+    this._likeCardBtn = this._card.querySelector('.element__like')
+    this._elementName = this._card.querySelector('.element__title')
+    this._elementLink = this._card.querySelector('.element__image')
+    this._deleteCardBtn = this._card.querySelector('.element__delete')
+    this._counterLikes = this._card.querySelector('.element__counter-likes')
     this._ownerId = data.owner._id
     this._likes = data.likes
   }
@@ -29,7 +29,7 @@ export class Card {
       this._deleteCardBtn.style.display = 'none'
     }
 
-    return this._newElement
+    return this._card
   }
 
   checkAvailabilityLike() {
@@ -68,8 +68,8 @@ export class Card {
   }
 
   _getTemplate() {
-    const newElement = document.querySelector(this._elementTemplateSelector).content.querySelector('.element').cloneNode(true)
-    return newElement
+    const card = document.querySelector(this._elementTemplateSelector).content.querySelector('.element').cloneNode(true)
+    return card
   }
 
   _addEventListeners = () => {
@@ -86,7 +86,13 @@ export class Card {
     )
 
     this._deleteCardBtn.addEventListener('click', () => {
-      this._handleDeleteBtnClick(this._cardId, this._newElement)
+      this._handleDeleteBtnClick(this._cardId, this._card)
     })
   }
+  deleteElement() {
+    this._card.remove();
+    this._card = null;
+  }
+
+
 }

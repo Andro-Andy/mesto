@@ -112,8 +112,8 @@ const handleDeleteElement = (id, card) => {
 	api
 		.deleteElement(id)
 		.then((res) => {
-			popupWithSubmit.deleteElement()
-			popupWithSubmit.close()
+			card.deleteElement()
+			card.close()
 		})
 		.catch((error) => {
 			console.log(error)
