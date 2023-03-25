@@ -22,9 +22,10 @@ export class PopupWithSubmit extends Popup {
         super.setEventListeners()
     }
 
-    //удалить карточку со страницы
-    deleteElement() {
-        this._card.remove();
-    }
+    // // удалить карточку со страницы
+    // deleteElement() {
+    //     this._card.remove();
+    //     this._card = null;
+    // } 
 }
 
