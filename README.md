@@ -39,4 +39,4 @@
 - ООП
 - Webpack
 
-\*Проект добавлен на Git pages [Посмотреть](https://ww228ww.github.io/mesto/)
+\*Проект добавлен на Git pages [Посмотреть](https://Andro-Andy.github.io/mesto/)
